@@ -36,6 +36,10 @@ $config = [
                 };
             },*/
         ],
+        'account' => [
+
+            'class' => 'app\modules\account\Account',
+        ],
     ],
     'components' => [
         'request' => [
