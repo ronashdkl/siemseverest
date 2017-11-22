@@ -7,8 +7,8 @@ namespace Composer\Autoload;
 class ComposerStaticInitc22a6a76a7e576c519fe0104bbd8dbd7
 {
     public static $files = array (
-        '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
         '2cffec82183ee1cea088009cef9a6fc3' => __DIR__ . '/..' . '/ezyang/htmlpurifier/library/HTMLPurifier.composer.php',
+        '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
         '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
         '2c102faa651ef8ea5874edb585946bce' => __DIR__ . '/..' . '/swiftmailer/swiftmailer/lib/swift_required.php',
         'a0edc8309cc5e1d60e3047b5df6b7052' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/functions_include.php',
@@ -19,23 +19,14 @@ class ComposerStaticInitc22a6a76a7e576c519fe0104bbd8dbd7
         'y' => 
         array (
             'yii\\swiftmailer\\' => 16,
+            'yii\\httpclient\\' => 15,
             'yii\\gii\\' => 8,
             'yii\\faker\\' => 10,
             'yii\\debug\\' => 10,
             'yii\\composer\\' => 13,
             'yii\\bootstrap\\' => 14,
+            'yii\\authclient\\' => 15,
             'yii\\' => 4,
-        ),
-        'w' => 
-        array (
-            'webvimark\\modules\\UserManagement\\' => 33,
-            'webvimark\\image\\' => 16,
-            'webvimark\\helpers\\' => 18,
-            'webvimark\\extensions\\GridPageSize\\' => 34,
-            'webvimark\\extensions\\GridBulkActions\\' => 37,
-            'webvimark\\extensions\\DateRangePicker\\' => 37,
-            'webvimark\\extensions\\BootstrapSwitch\\' => 37,
-            'webvimark\\components\\' => 21,
         ),
         'p' => 
         array (
@@ -46,6 +37,11 @@ class ComposerStaticInitc22a6a76a7e576c519fe0104bbd8dbd7
             'kartik\\select2\\' => 15,
             'kartik\\date\\' => 12,
             'kartik\\base\\' => 12,
+        ),
+        'd' => 
+        array (
+            'dektrium\\user\\' => 14,
+            'dektrium\\rbac\\' => 14,
         ),
         'c' => 
         array (
@@ -98,6 +94,10 @@ class ComposerStaticInitc22a6a76a7e576c519fe0104bbd8dbd7
         array (
             0 => __DIR__ . '/..' . '/yiisoft/yii2-swiftmailer',
         ),
+        'yii\\httpclient\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/yiisoft/yii2-httpclient',
+        ),
         'yii\\gii\\' => 
         array (
             0 => __DIR__ . '/..' . '/yiisoft/yii2-gii',
@@ -118,41 +118,13 @@ class ComposerStaticInitc22a6a76a7e576c519fe0104bbd8dbd7
         array (
             0 => __DIR__ . '/..' . '/yiisoft/yii2-bootstrap',
         ),
+        'yii\\authclient\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/yiisoft/yii2-authclient',
+        ),
         'yii\\' => 
         array (
             0 => __DIR__ . '/..' . '/yiisoft/yii2',
-        ),
-        'webvimark\\modules\\UserManagement\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/webvimark/module-user-management',
-        ),
-        'webvimark\\image\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/webvimark/image',
-        ),
-        'webvimark\\helpers\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/webvimark/helpers',
-        ),
-        'webvimark\\extensions\\GridPageSize\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/webvimark/grid-page-size',
-        ),
-        'webvimark\\extensions\\GridBulkActions\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/webvimark/grid-bulk-actions',
-        ),
-        'webvimark\\extensions\\DateRangePicker\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/webvimark/date-range-picker',
-        ),
-        'webvimark\\extensions\\BootstrapSwitch\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/webvimark/bootstrap-switch',
-        ),
-        'webvimark\\components\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/webvimark/components',
         ),
         'phpDocumentor\\Reflection\\' => 
         array (
@@ -171,6 +143,14 @@ class ComposerStaticInitc22a6a76a7e576c519fe0104bbd8dbd7
         'kartik\\base\\' => 
         array (
             0 => __DIR__ . '/..' . '/kartik-v/yii2-krajee-base',
+        ),
+        'dektrium\\user\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/dektrium/yii2-user',
+        ),
+        'dektrium\\rbac\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/dektrium/yii2-rbac',
         ),
         'cebe\\markdown\\' => 
         array (
@@ -260,13 +240,6 @@ class ComposerStaticInitc22a6a76a7e576c519fe0104bbd8dbd7
             'Prophecy\\' => 
             array (
                 0 => __DIR__ . '/..' . '/phpspec/prophecy/src',
-            ),
-        ),
-        'I' => 
-        array (
-            'Ikimea\\Browser\\' => 
-            array (
-                0 => __DIR__ . '/..' . '/ikimea/browser/lib',
             ),
         ),
         'H' => 
