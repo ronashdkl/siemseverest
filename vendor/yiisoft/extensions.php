@@ -103,14 +103,4 @@ return array (
     ),
     'bootstrap' => 'dektrium\\user\\Bootstrap',
   ),
-  'dektrium/yii2-rbac' => 
-  array (
-    'name' => 'dektrium/yii2-rbac',
-    'version' => '1.0.0.0-alpha',
-    'alias' => 
-    array (
-      '@dektrium/rbac' => $vendorDir . '/dektrium/yii2-rbac',
-    ),
-    'bootstrap' => 'dektrium\\rbac\\Bootstrap',
-  ),
 );
