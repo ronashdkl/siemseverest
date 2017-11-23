@@ -24,7 +24,8 @@ use app\models\Employee;
     <?php echo $form->field($model, 'date')->widget(DatePicker::classname(), [
         'options' => ['placeholder' => 'Enter birth date ...'],
         'pluginOptions' => [
-            'autoclose'=>true
+            'autoclose'=>true,
+            'format' => 'yyyy-m-dd'
         ]
     ]);
     ?>

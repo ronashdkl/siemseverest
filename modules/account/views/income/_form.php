@@ -34,7 +34,8 @@ use app\component\Helper;
                 <?= $form->field($model, 'date')->widget(DatePicker::classname(), [
                     'options' => ['placeholder' => 'Enter date ...'],
                     'pluginOptions' => [
-                        'autoclose'=>true
+                        'autoclose'=>true,
+                        'format' => 'yyyy-m-dd'
                     ]
                 ]);
                 ?>
