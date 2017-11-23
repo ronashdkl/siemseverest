@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use kartik\date\DatePicker;
+use app\component\Helper;
 /* @var $this yii\web\View */
 /* @var $model app\modules\account\models\Income */
 /* @var $form yii\widgets\ActiveForm */
@@ -26,15 +27,11 @@ use kartik\date\DatePicker;
             <div class="box-body">
                 <?php $form = ActiveForm::begin(); ?>
 
-                <?= $form->field($model, 'amount')->textInput() ?>
-
                 <?= $form->field($model, 'source')->textInput(['maxlength' => true]) ?>
 
-                <label>Date</label>
-                <?php //$form->field($model, 'date')->textInput()
-                echo DatePicker::widget([
-                    'model' => $model,
-                    'attribute' => 'date',
+                <?= $form->field($model, 'amount')->textInput() ?>
+
+                <?= $form->field($model, 'date')->widget(DatePicker::classname(), [
                     'options' => ['placeholder' => 'Enter date ...'],
                     'pluginOptions' => [
                         'autoclose'=>true
@@ -42,7 +39,9 @@ use kartik\date\DatePicker;
                 ]);
                 ?>
 
-                <?= $form->field($model, 'received_by')->textInput(['maxlength' => true]) ?>
+                <?= $form->field($model, 'received_by')->dropDownList(
+                    \yii\helpers\ArrayHelper::map(\app\models\Employee::find()->select(['id', 'first_name', 'last_name'])->where(['job_post' => Helper::MANAGER])->all(), 'first_name', 'FullName')
+                )  ?>
 
                 <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
 

@@ -16,20 +16,17 @@ use app\models\Employee;
     <?php $form = ActiveForm::begin(); ?>
 
     <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
-    
 
-    <?= $form->field($model, 'amount')->textInput() ?>
+
+    <?= $form->field($model, 'amount') ?>
 
     <label>Date</label>
-    <?php //$form->field($model, 'date')->textInput()
-        echo DatePicker::widget([
-            'model' => $model,
-            'attribute' => 'date',
-            'options' => ['placeholder' => 'Enter date ...'],
-            'pluginOptions' => [
-                'autoclose'=>true
-            ]
-        ]);
+    <?php echo $form->field($model, 'date')->widget(DatePicker::classname(), [
+        'options' => ['placeholder' => 'Enter birth date ...'],
+        'pluginOptions' => [
+            'autoclose'=>true
+        ]
+    ]);
     ?>
 
     <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>

@@ -334,8 +334,6 @@ AdminAsset::register($this);
                         <li class="treeview">
                             <a href="<?= Url::toRoute('income/index')?>"><i class="fa fa-circle-o"></i>Income</a>
                         </li>
-                    </ul>
-                    <ul class="treeview-menu">
                         <li class="treeview">
                             <a href="<?= Url::toRoute('expenses/index')?>"><i class="fa fa-circle-o"></i>Expenses</a>
                         </li>
@@ -374,11 +372,6 @@ AdminAsset::register($this);
                             </a>
                             <ul class="treeview-menu">
                                 <li><a href="#"><i class="fa fa-circle-o"></i> Level Two</a></li>
-                                <li class="treeview">
-                                    <a href="#"><i class="fa fa-circle-o"></i> Level Two
-                                        <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
-                                    </a>
-                                </li>
                             </ul>
                         </li>
                     </ul>
