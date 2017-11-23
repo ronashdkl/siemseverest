@@ -41,6 +41,7 @@ class ComposerStaticInitc22a6a76a7e576c519fe0104bbd8dbd7
         'd' => 
         array (
             'dektrium\\user\\' => 14,
+            'dektrium\\rbac\\' => 14,
         ),
         'c' => 
         array (
@@ -146,6 +147,10 @@ class ComposerStaticInitc22a6a76a7e576c519fe0104bbd8dbd7
         'dektrium\\user\\' => 
         array (
             0 => __DIR__ . '/..' . '/dektrium/yii2-user',
+        ),
+        'dektrium\\rbac\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/dektrium/yii2-rbac',
         ),
         'cebe\\markdown\\' => 
         array (

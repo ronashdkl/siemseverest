@@ -3,8 +3,8 @@
 namespace app\modules\account\controllers;
 
 use Yii;
-use app\models\Expenses;
 use app\modules\account\models\ExpensesSearch;
+use app\modules\account\models\Expenses;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -14,6 +14,7 @@ use yii\filters\VerbFilter;
  */
 class ExpensesController extends Controller
 {
+    public $layout = 'admin';
     /**
      * @inheritdoc
      */

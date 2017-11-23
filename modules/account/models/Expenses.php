@@ -1,6 +1,6 @@
 <?php
 
-namespace app\models;
+namespace app\modules\account\models;
 
 use Yii;
 
@@ -30,6 +30,7 @@ class Expenses extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['title','amount','date'],'required'],
             [['title'], 'required'],
             [['amount', 'status'], 'integer'],
             [['date'], 'safe'],

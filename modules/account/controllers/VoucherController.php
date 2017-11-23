@@ -1,6 +1,6 @@
 <?php
 
-namespace app\controllers;
+namespace app\modules\account\controllers;
 
 use app\component\Helper;
 use app\models\Employee;

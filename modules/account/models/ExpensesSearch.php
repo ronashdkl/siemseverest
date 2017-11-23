@@ -5,7 +5,7 @@ namespace app\modules\account\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Expenses;
+use app\modules\account\models\Expenses;
 
 /**
  * ExpensesSearch represents the model behind the search form about `app\models\Expenses`.
