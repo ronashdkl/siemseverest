@@ -34,7 +34,7 @@ class Withdraw extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['amount', 'received_by', 'status'], 'integer'],
+            [['amount', 'status'], 'integer'],
             [['date'], 'safe'],
             [['title', 'purpose'], 'string', 'max' => 25],
             [['description'], 'string', 'max' => 255],
