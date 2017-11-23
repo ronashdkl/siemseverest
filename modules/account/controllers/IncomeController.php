@@ -14,6 +14,8 @@ use yii\filters\VerbFilter;
  */
 class IncomeController extends Controller
 {
+    //layouts for income
+    public $layout = 'admin';
     /**
      * @inheritdoc
      */
