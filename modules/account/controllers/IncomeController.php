@@ -2,6 +2,7 @@
 
 namespace app\modules\account\controllers;
 
+use app\models\Balance;
 use Yii;
 use app\modules\account\models\Income;
 use app\modules\account\models\IncomeSearch;
@@ -67,7 +68,15 @@ class IncomeController extends Controller
     {
         $model = new Income();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post())) {
+            $balance = Balance::find()->orderBy(['id' => SORT_DESC])->one();
+            if($model->save() && $model->validate()){
+                $bal_model = new Balance();
+                $bal_model->bank_amount = $balance['bank_amount']+$model->amount;
+                $bal_model->cash_amount = $balance['cash_amount'];
+                $bal_model->ref_id = "{table:insert,id:".$model->id."}";
+                $bal_model->save();
+            }
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
@@ -85,8 +94,10 @@ class IncomeController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        $balance = Balance::find()->orderBy(['id' => SORT_DESC])->one();
+        if ($model->load(Yii::$app->request->post())) {
+            //$model->
+            $model->save();
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [

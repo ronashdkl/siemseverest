@@ -41,7 +41,7 @@ use app\component\Helper;
                 ?>
 
                 <?= $form->field($model, 'received_by')->dropDownList(
-                    \yii\helpers\ArrayHelper::map(\app\models\Employee::find()->select(['id', 'first_name', 'last_name'])->where(['job_post' => Helper::MANAGER])->all(), 'first_name', 'FullName')
+                    \yii\helpers\ArrayHelper::map(\app\modules\account\models\Employee::find()->select(['id', 'first_name', 'last_name'])->where(['job_post' => Helper::MANAGER])->all(), 'first_name', 'FullName')
                 )  ?>
 
                 <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
