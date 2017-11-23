@@ -335,6 +335,11 @@ AdminAsset::register($this);
                             <a href="<?= Url::toRoute('income/index')?>"><i class="fa fa-circle-o"></i>Income</a>
                         </li>
                     </ul>
+                    <ul class="treeview-menu">
+                        <li class="treeview">
+                            <a href="<?= Url::toRoute('expenses/index')?>"><i class="fa fa-circle-o"></i>Expenses</a>
+                        </li>
+                    </ul>
                 </li>
                 <li class="treeview">
                     <a href="#">

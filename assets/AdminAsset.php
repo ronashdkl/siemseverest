@@ -19,9 +19,13 @@ class AdminAsset extends AssetBundle
         'fonts/ionicons.min.css',
         'dist/css/AdminLTE.min.css',
         'dist/css/skins/_all-skins.min.css',
+        'bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css',
         ];
     public $js = [
+        'plugins/jQuery/jquery-2.2.3.min.js',
         'bootstrap/js/bootstrap.min.js',
+        'bower_components/datatables.net/js/jquery.dataTables.min.js',
+        'bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js',
         'https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js',
         'https://oss.maxcdn.com/respond/1.4.2/respond.min.js',
         'plugins/fastclick/fastclick.js',
