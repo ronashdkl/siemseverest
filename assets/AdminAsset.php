@@ -22,7 +22,6 @@ class AdminAsset extends AssetBundle
         'bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css',
         ];
     public $js = [
-        'plugins/jQuery/jquery-2.2.3.min.js',
         'bootstrap/js/bootstrap.min.js',
         'bower_components/datatables.net/js/jquery.dataTables.min.js',
         'bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js',
