@@ -38,11 +38,11 @@ class IncomeController extends Controller
     public function actionIndex()
     {
         $searchModel = new IncomeSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
+//        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $data = Income::find()->all();
         return $this->render('index', [
             'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
+            'data' => $data,
         ]);
     }
 
