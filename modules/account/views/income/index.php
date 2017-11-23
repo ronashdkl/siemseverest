@@ -53,7 +53,7 @@ $counter=1;
                         <td>
                             <ul class="list-unstyled">
                                 <li style="display:inline-block">
-                                    <a class=" btn btn-success btn-sm field-tip pointer" href="#">
+                                    <a class=" btn btn-success btn-sm field-tip pointer" href="view?id=<?=$each_data->id?>">
                                         <span class="fa fa-eye"></span>
                                     </a>
                                     <span class="tip-content" style="display: none;">View</span>

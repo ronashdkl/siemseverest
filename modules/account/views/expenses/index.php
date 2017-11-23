@@ -59,7 +59,7 @@ $counter=1;
                         <td>
                             <ul class="list-unstyled">
                                 <li style="display:inline-block">
-                                    <a class=" btn btn-success btn-sm field-tip pointer" href="#">
+                                    <a class=" btn btn-success btn-sm field-tip pointer" href="view?id=<?= $each_data->id ?>">
                                         <span class="fa fa-eye"></span>
                                     </a>
                                     <span class="tip-content" style="display: none;">View</span>
@@ -71,7 +71,7 @@ $counter=1;
                                     <span class="tip-content" style="display: none;">Delete</span>
                                 </li>
                                 <li style="display:inline-block"  >
-                                    <a class=" btn btn-primary btn-sm field-tip pointer" href="#">
+                                    <a class=" btn btn-primary btn-sm field-tip pointer" href="update?id=<?= $each_data->id ?>">
                                         <span class="fa fa-edit"></span>
                                     </a>
                                     <span class="tip-content" style="display: none;">Edit</span>

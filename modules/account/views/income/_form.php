@@ -9,7 +9,7 @@ use app\component\Helper;
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="container">
+<div class="container-fluid">
 
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -18,10 +18,10 @@ use app\component\Helper;
         </h1>
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li class="active"><<?= $this->title;?></li>
+            <li class="active"><?= $this->title;?></li>
         </ol>
     </section>
-    <section class="col-lg-10 connectedSortable">
+    <section class="connectedSortable">
         <!-- TO DO List -->
         <div class="box box-primary">
             <div class="box-body">
@@ -59,7 +59,3 @@ use app\component\Helper;
     </section>
 </div>
 
-
-<div class="income-form">
-
-</div>

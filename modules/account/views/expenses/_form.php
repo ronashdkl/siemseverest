@@ -11,32 +11,46 @@ use app\models\Employee;
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="expenses-form">
+<div class="container-fluid">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            <?= $this->title ;?>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="active"><?= $this->title;?></li>
+        </ol>
+    </section>
+    <section class="connectedSortable">
+        <div class="box box-primary">
+            <div class="box-body">
 
-    <?php $form = ActiveForm::begin(); ?>
+                <?php $form = ActiveForm::begin(); ?>
+                <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
+                <?= $form->field($model, 'amount') ?>
+                
+                <?php echo $form->field($model, 'date')->widget(DatePicker::classname(), [
+                    'options' => ['placeholder' => 'Enter birth date ...'],
+                    'pluginOptions' => [
+                        'autoclose'=>true,
+                        'format' => 'yyyy-m-dd'
+                    ]
+                ]);
+                ?>
 
-
-    <?= $form->field($model, 'amount') ?>
-
-    <label>Date</label>
-    <?php echo $form->field($model, 'date')->widget(DatePicker::classname(), [
-        'options' => ['placeholder' => 'Enter birth date ...'],
-        'pluginOptions' => [
-            'autoclose'=>true,
-            'format' => 'yyyy-m-dd'
-        ]
-    ]);
-    ?>
-
-    <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
+                <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
 
 
-    <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
-    </div>
+                <div class="form-group">
+                    <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+                </div>
 
-    <?php ActiveForm::end(); ?>
-
+                <?php ActiveForm::end(); ?>
+            </div>
+            <!-- /.box-body -->
+        </div>
+        <!-- /.box -->
+    </section>
 </div>
