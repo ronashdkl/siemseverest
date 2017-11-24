@@ -4,6 +4,8 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use kartik\date\DatePicker;
 use app\component\Helper;
+use app\modules\account\models\Employee;
+use yii\helpers\ArrayHelper;
 
 /* @var $this yii\web\View */
 /* @var $model app\modules\account\models\Withdraw */
@@ -14,7 +16,7 @@ use app\component\Helper;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'title')->textInput(['maxlength' => true ,'id'=>'quantity']) ?>
 
     <?= $form->field($model, 'amount')->textInput() ?>
 
@@ -26,9 +28,21 @@ use app\component\Helper;
         ]
     ]);
     ?>
-    <?= $form->field($model, 'received_by')->dropDownList(
-        \yii\helpers\ArrayHelper::map(\app\modules\account\models\Employee::find()->select(['id', 'first_name', 'last_name'])->where(['job_post' => Helper::MANAGER])->all(), 'id', 'fullName')
-    ) ?>
+    <?php
+    $employee = Employee::find()->all();
+    $employee_array = ArrayHelper::map($employee, 'id', 'fullName');
+    array_push($employee_array,"other");
+    ?>
+    <?= Html::dropDownList('s_id', null,$employee_array,
+        ['prompt'=>'-Choose a option-',
+            'onchange'=>'if($(this).val() == '.count($employee_array).'){
+                 $("#received_by").classList.remove("hidden"); }else{ }'
+        ]) ?>
+
+
+    <?= $form->field($model, 'received_by')->textInput(['id'=>'received_by','class'=>'hidden']);?>
+
+
 
     <?= $form->field($model, 'description')->textInput(['maxlength' => true]) ?>
 
