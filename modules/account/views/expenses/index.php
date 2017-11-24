@@ -108,7 +108,7 @@ Modal::end();
                                 <div class="modal-body">
                                     <h5>Are you sure you want to delete this file?</h5>
                                     <?php $form=ActiveForm::begin([
-                                        'action' => 'delete-expenses',
+                                        'action' => '../account/expenses/delete-expenses',
 
                                     ]);  ?>
                                     <?= Html::input('hidden', 'id',$each_data->id, ['class' => '']) ?>

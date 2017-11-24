@@ -45,9 +45,12 @@ class VoucherController extends Controller
     {
         $searchModel = new VoucherSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $data = Voucher::find()->all();
+        $model = new Voucher();
         return $this->render('index', [
             'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
+            'data' => $data,
+            'model' => $model
         ]);
     }
 

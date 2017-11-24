@@ -10,8 +10,22 @@ use yii\web\View;
 /* @var $this yii\web\View */
 /* @var $model app\models\Voucher */
 /* @var $form yii\widgets\ActiveForm */
-?>  <?php $form = ActiveForm::begin(); ?>
-<div class="row">
+?>
+
+<section class="content-header">
+    <h1>
+        <?= $this->title ;?>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active"><?= $this->title;?></li>
+    </ol>
+</section>
+
+<div class="container-fluid">
+    <div class="no-padding no-margin box box-primary">
+<?php $form = ActiveForm::begin(); ?>
+<div class="box-body no-padding no-margin">
     <div class="col-md-6">
         <div class="voucher-form">
 
@@ -68,7 +82,7 @@ use yii\web\View;
                 <div id="avatar" class="pull-right">
                     <?php
                     if(!$model->isNewRecord){
-                        echo "<img src='".$model->paidTo->image."' class=\"pull-right thumbnail\" style=\"width: 300px; height:300px; border: 1px;border-style: dashed;border-radius: 30px \"; ><br/>";
+                        echo "<img src='".$model->paidTo->image."' class=\"pull-right thumbnail\" style=\"width: 260px; height:300px; border: 1px;border-style: dashed;border-radius: 30px \"; ><br/>";
                         echo "<p class='text-center'>".$model->paidTo->job_post."</p>";
                     }
                     ?>
@@ -87,6 +101,8 @@ use yii\web\View;
     <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
 </div>
 <?php ActiveForm::end(); ?>
+        </div>
+</div>
 <?php
 $script = <<< JS
 $('#voucher-paid_to').on("select2:select", function(e) { 
@@ -98,7 +114,7 @@ $('#voucher-paid_to').on("select2:select", function(e) {
               var amount = jQuery.parseJSON(data);
               console.log("tax",amount);
               $('#avatar').empty();
-             $('#avatar').append('<img src='+amount.avatar+' class="pull-right thumbnail" style="width: 300px; height:300px; border: 1px;border-style: dashed;border-radius: 30px "; >');
+             $('#avatar').append('<img src='+amount.avatar+' class="pull-right thumbnail" style="width: 260px; height:300px; border: 1px;border-style: dashed;border-radius: 30px "; >');
              $('#avatar').append('<p class=\'text-center\'>'+amount.job_post+'</p>');
              
              $('#amount').val(amount.payAmount); 
