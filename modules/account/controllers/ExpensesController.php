@@ -40,12 +40,14 @@ class ExpensesController extends Controller
     public function actionIndex()
     {
         $searchModel = new ExpensesSearch();
+        $model = new Expenses();
 //        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         $data = Expenses::findAll(['status'=> 1]);
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'data' => $data,
+            'model' => $model
         ]);
     }
 
@@ -154,5 +156,13 @@ class ExpensesController extends Controller
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
+    }
+
+    public function actionDeleteExpenses(){
+        $id=$_POST['id'];
+        $model = Expenses::findOne($id);
+            $model->status = 0;
+            $model->save(false);
+
     }
 }
