@@ -29,5 +29,7 @@ class Helper
     const INCOME ="incomes";
     //table name expense
     const EXPENSES = "expenses";
+    //table for withdraw
+    const WITHDRAW = "withdraw";
 
 }
