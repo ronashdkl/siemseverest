@@ -34,11 +34,11 @@ use yii\helpers\ArrayHelper;
             $employee_array = ArrayHelper::map($employee, 'fullname', 'fullName');
             $employee_array["other"] = "other";
             ?>
-
+            <label>Received by</label>
             <?php
-            echo $form->field($model, 'received_by')->textInput(['id'=>'received_by','class'=>'hidden','value'=>reset($employee_array)]);
             echo Html::dropDownList('s_id', null,$employee_array,
                 [
+                    'class'=>"form-control",
                     'onchange'=>'if($(this).val() == "other"){
                          $("#received_by").empty();
                          $("#received_by").removeClass("hidden"); 
@@ -48,6 +48,8 @@ use yii\helpers\ArrayHelper;
                            $("#received_by").val(name);
                           }'
                 ]);
+
+            echo $form->field($model, 'received_by')->textInput(['id'=>'received_by','class'=>'hidden form-control','value'=>reset($employee_array)])->label(false);
            ?>
 
 
