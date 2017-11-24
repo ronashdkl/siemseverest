@@ -41,10 +41,13 @@ class WithdrawController extends Controller
     {
         $searchModel = new WithdrawSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $model = new Withdraw();
+        $data = Withdraw::findAll(['status'=> 1]);
 
         return $this->render('index', [
             'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
+            'data' => $data,
+            'model' => $model
         ]);
     }
 
@@ -136,6 +139,16 @@ class WithdrawController extends Controller
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
+    }
+
+    public function actionDeleteWithdraw()
+    {
+        $id=$_POST['id'];
+        $model = Withdraw::findOne($id);
+        $model->status = 0;
+        $model->save(false);
+        return $this->redirect(['index']);
+
     }
 
     /**

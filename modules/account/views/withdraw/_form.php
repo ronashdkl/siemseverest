@@ -12,50 +12,56 @@ use yii\helpers\ArrayHelper;
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="withdraw-form">
+<div class="container-fluid">
+    <section class="connectedSortable">
+        <div class="box-body">
+            <?php $form = ActiveForm::begin([
+                'action' => 'create'
+            ]); ?>
 
-    <?php $form = ActiveForm::begin(); ?>
+            <?= $form->field($model, 'title')->textInput(['maxlength' => true ,'id'=>'quantity']) ?>
 
-    <?= $form->field($model, 'title')->textInput(['maxlength' => true ,'id'=>'quantity']) ?>
+            <?= $form->field($model, 'amount')->textInput() ?>
 
-    <?= $form->field($model, 'amount')->textInput() ?>
-
-    <?= $form->field($model, 'date')->widget(DatePicker::classname(), [
-        'options' => ['placeholder' => 'Enter date ...'],
-        'pluginOptions' => [
-            'autoclose'=>true,
-            'format' => 'yyyy-m-dd'
-        ]
-    ]);
-    ?>
-    <?php
-    $employee = Employee::find()->all();
-    $employee_array = ArrayHelper::map($employee, 'fullname', 'fullName');
-    array_push($employee_array,"other");
-    ?>
-    <?= Html::dropDownList('s_id', null,$employee_array,
-        [
-            'onchange'=>'if($(this).val() == '.count($employee_array).'){
-                 $("#received_by").removeClass("hidden"); }else{
-                     var name = $(this).val();
-                   $("#received_by").empty();
-                   $("#received_by").val(name);
-                  }'
-        ]) ?>
+            <?= $form->field($model, 'date')->widget(DatePicker::classname(), [
+                'options' => ['placeholder' => 'Enter date ...'],
+                'pluginOptions' => [
+                    'autoclose'=>true,
+                    'format' => 'yyyy-m-dd'
+                ]
+            ]);
+            ?>
+            <?php
+            $employee = Employee::find()->all();
+            $employee_array = ArrayHelper::map($employee, 'fullname', 'fullName');
+            array_push($employee_array,"other");
+            ?>
+            <?= Html::dropDownList('s_id', null,$employee_array,
+                [
+                    'onchange'=>'if($(this).val() == '.count($employee_array).'){
+                         $("#received_by").removeClass("hidden"); }else{
+                             var name = $(this).val();
+                           $("#received_by").empty();
+                           $("#received_by").val(name);
+                          }'
+                ]) ?>
 
 
-    <?= $form->field($model, 'received_by')->textInput(['id'=>'received_by','class'=>'hidden','value'=>reset($employee_array)]);?>
+            <?= $form->field($model, 'received_by')->textInput(['id'=>'received_by','class'=>'hidden','value'=>reset($employee_array)]);?>
 
 
 
-    <?= $form->field($model, 'description')->textInput(['maxlength' => true]) ?>
+            <?= $form->field($model, 'description')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'purpose')->textInput(['maxlength' => true]) ?>
+            <?= $form->field($model, 'purpose')->textInput(['maxlength' => true]) ?>
 
-    <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
-    </div>
+            <div class="form-group">
+                <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+            </div>
 
-    <?php ActiveForm::end(); ?>
+            <?php ActiveForm::end(); ?>
 
+        </div>
+        <!-- /.box-body -->
+    </section>
 </div>

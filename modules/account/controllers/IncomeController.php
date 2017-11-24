@@ -43,9 +43,11 @@ class IncomeController extends Controller
         $searchModel = new IncomeSearch();
 //        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         $data = Income::findAll(['status'=>1]);
+        $model = new Income();
         return $this->render('index', [
             'searchModel' => $searchModel,
             'data' => $data,
+            'model' => $model
         ]);
     }
 
@@ -73,7 +75,6 @@ class IncomeController extends Controller
         $bal_model = new Balance();
         $balance = Balance::find()->orderBy(['id' => SORT_DESC])->one();
         if ($model->load(Yii::$app->request->post())) {
-
             if($model->save() && $model->validate()){
 
                 //handling out for json string
@@ -140,6 +141,16 @@ class IncomeController extends Controller
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
+    }
+    
+    public function actionDeleteIncome()
+    {
+        $id=$_POST['id'];
+        $model = Income::findOne($id);
+        $model->status = 0;
+        $model->save(false);
+        return $this->redirect(['index']);
+        
     }
 
     /**

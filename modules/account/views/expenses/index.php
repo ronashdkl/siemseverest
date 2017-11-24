@@ -145,13 +145,6 @@ $('#createbtn').on('click',function(event){
 JS;
 $this->registerJs($script, View::POS_END); ?>
 
-<style>
-    #main_page_modal_content{
-        overflow-y: auto;
-        max-height: calc(100vh - 100px);
-    }
-</style>
-
 
 
 

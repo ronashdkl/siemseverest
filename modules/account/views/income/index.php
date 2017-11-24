@@ -3,6 +3,8 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\web\View;
+use yii\widgets\ActiveForm;
+use yii\bootstrap\Modal;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\modules\account\models\IncomeSearch */
@@ -11,6 +13,19 @@ use yii\web\View;
 $this->title = 'Incomes';
 $counter=1;
 ?>
+
+<?php
+Modal::begin([
+    'header'=>'<h4 class="modal-title">Create</h4>',
+//        'options'=>['class'=>'modal modal-primary'],
+    'id'=>'createModal',
+    'size'=>'modal-lg'
+]);
+echo '<div id="creatediv" style="overflow-y: auto;max-height: calc(100vh - 100px);">'. $this->render('_form',['model'=> $model]).'</div>';
+Modal::end();
+
+?>
+
 <section class="content-header">
     <h1>
         <?= $this->title ;?>
@@ -25,7 +40,9 @@ $counter=1;
     <div class="no-padding no-margin box box-primary">
         <div class="box-header">
             <p class="col-3">
-                <?= Html::a('', ['create'], ['class' => 'btn btn-success pull-right fa fa-plus']) ?>
+                <a data-toggle="modal" data-target="#createModal" id="createbtn">
+                    <span class='btn btn-success pull-right fa fa-plus'></span>
+                </a>
             </p>
         </div>
         <div class="box-body">
@@ -59,9 +76,9 @@ $counter=1;
                                     <span class="tip-content" style="display: none;">View</span>
                                 </li>
                                 <li style="display:inline-block">
-                                    <a class=" btn btn-danger btn-sm field-tip pointer" href="#">
+                                    <button class="btn btn-danger btn-sm field-tip pointer" id="delete_btn" data-toggle="modal" data-target="#myModalnote<?=$each_data->id?>">
                                         <span class="fa fa-trash-o"></span>
-                                    </a>
+                                    </button>
                                     <span class="tip-content" style="display: none;">Delete</span>
                                 </li>
                                 <li style="display:inline-block">
@@ -73,6 +90,29 @@ $counter=1;
                             </ul>
                         </td>
                     </tr>
+
+                    <!-- delete modal -->
+                    <div class="modal fade" id="delete_Modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title center" id="myModalLabel">Delete Expense</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <h5>Are you sure you want to delete this file?</h5>
+                                    <?php $form=ActiveForm::begin([
+                                        'action' => 'delete-income',
+
+                                    ]);  ?>
+                                    <?= Html::input('hidden', 'id',$each_data->id, ['class' => '']) ?>
+                                    <?= Html::submitButton('Yes',['class' => 'btn btn-success',] ) ?>
+                                    <?php ActiveForm::end(); ?>
+                                    <?= Html::submitButton('No', ['class' => 'btn btn-danger','data-dismiss'=>"modal" ]) ?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 <?php }?>
                 </tbody>
             </table>
@@ -85,6 +125,16 @@ $counter=1;
 $script = <<< JS
 $(document).ready(function(){
     $('#income_table').DataTable({"aoColumnDefs": [{ 'bSortable': false, 'aTargets': [-1] }]});
+    
+    $('#delete_btn').on('click',function(event){
+    $('#delete_Modal').modal('show');
+    event.stopPropagation();
+    });
+
+    $('#createbtn').on('click',function(event){
+        $('#createModal').modal('show');
+        event.stopPropagation();
+    });
 });
 JS;
 $this->registerJs($script, View::POS_END); ?>

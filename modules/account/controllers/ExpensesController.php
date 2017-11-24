@@ -142,6 +142,16 @@ class ExpensesController extends Controller
         return $this->redirect(['index']);
     }
 
+    public function actionDeleteExpenses()
+    {
+        $id=$_POST['id'];
+        $model = Expenses::findOne($id);
+        $model->status = 0;
+        $model->save(false);
+        return $this->redirect(['index']);
+
+    }
+    
     /**
      * Finds the Expenses model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
@@ -158,11 +168,5 @@ class ExpensesController extends Controller
         }
     }
 
-    public function actionDeleteExpenses(){
-        $id=$_POST['id'];
-        $model = Expenses::findOne($id);
-            $model->status = 0;
-            $model->save(false);
-
-    }
+    
 }
