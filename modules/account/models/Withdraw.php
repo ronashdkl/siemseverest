@@ -11,12 +11,10 @@ use Yii;
  * @property string $title
  * @property integer $amount
  * @property string $date
- * @property integer $received_by
+ * @property string $received_by
  * @property string $description
  * @property string $purpose
  * @property integer $status
- *
- * @property Employee $receivedBy
  */
 class Withdraw extends \yii\db\ActiveRecord
 {
@@ -37,8 +35,7 @@ class Withdraw extends \yii\db\ActiveRecord
             [['amount', 'status'], 'integer'],
             [['date'], 'safe'],
             [['title', 'purpose'], 'string', 'max' => 25],
-            [['description'], 'string', 'max' => 255],
-            [['received_by'], 'exist', 'skipOnError' => true, 'targetClass' => Employee::className(), 'targetAttribute' => ['received_by' => 'id']],
+            [['received_by', 'description'], 'string', 'max' => 255],
         ];
     }
 
@@ -57,13 +54,5 @@ class Withdraw extends \yii\db\ActiveRecord
             'purpose' => 'Purpose',
             'status' => 'Status',
         ];
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getReceivedBy()
-    {
-        return $this->hasOne(Employee::className(), ['id' => 'received_by']);
     }
 }

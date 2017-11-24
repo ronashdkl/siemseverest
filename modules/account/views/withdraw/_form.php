@@ -30,17 +30,21 @@ use yii\helpers\ArrayHelper;
     ?>
     <?php
     $employee = Employee::find()->all();
-    $employee_array = ArrayHelper::map($employee, 'id', 'fullName');
+    $employee_array = ArrayHelper::map($employee, 'fullname', 'fullName');
     array_push($employee_array,"other");
     ?>
     <?= Html::dropDownList('s_id', null,$employee_array,
-        ['prompt'=>'-Choose a option-',
+        [
             'onchange'=>'if($(this).val() == '.count($employee_array).'){
-                 $("#received_by").classList.remove("hidden"); }else{ }'
+                 $("#received_by").removeClass("hidden"); }else{
+                     var name = $(this).val();
+                   $("#received_by").empty();
+                   $("#received_by").val(name);
+                  }'
         ]) ?>
 
 
-    <?= $form->field($model, 'received_by')->textInput(['id'=>'received_by','class'=>'hidden']);?>
+    <?= $form->field($model, 'received_by')->textInput(['id'=>'received_by','class'=>'hidden','value'=>reset($employee_array)]);?>
 
 
 
