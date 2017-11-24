@@ -5,6 +5,7 @@ use yii\widgets\ActiveForm;
 use app\component\Helper;
 use kartik\select2\Select2;
 use kartik\date\DatePicker;
+use yii\web\View;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Voucher */
@@ -19,30 +20,15 @@ use kartik\date\DatePicker;
             $form->field($model, 'paid_to')->widget(Select2::classname(), [
                 'data' => \yii\helpers\ArrayHelper::map(\app\modules\account\models\Employee::find()->all(), 'id', 'fullName'),
                 'language' => 'en',
+                'id'=>'paid_to',
                 'options' => ['placeholder' => 'Select Employee'],
                 'pluginOptions' => [
                     'allowClear' => true
-                ],
-                'pluginEvents' => array(
-                    "select2:select" => "function() {
-              $.post('" . Yii::$app->urlManager->createUrl('voucher/receiver-information?id=') . "'+$(this).val(), function( data ) {                
-                var amount = jQuery.parseJSON(data);
-              $('#avatar').empty();
-             $('#avatar').append('<img src='+amount.avatar+' class=\"pull-right thumbnail\" style=\"width: 300px; height:300px; border: 1px;border-style: dashed;border-radius: 30px \"; >');
-             $('#avatar').append('<p class=\'text-center\'>'+amount.job_post+'</p>');
-             
-             $('#amount').val(amount.payAmount); 
-     
-                });
-             }",
-                    "select2:unselect" => "function() {
- $('#avatar').empty();
-                        }",
-
-                )
+                ]
             ]) ?>
 
-            <?= $form->field($model, 'amount')->textInput(['id' => 'amount']) ?>
+            <?= $form->field($model, 'amount')->textInput(['id' => 'amount','readOnly'=>true]) ?>
+            <?= $form->field($model, 'tax_amount')->textInput(['id' => 'tax_amount','readOnly'=>true]) ?>
 
             <?= $form->field($model, 'has_received')->dropDownList(['1' => 'Yes', '0' => 'No'],['prompt'=>'Select Option']); ?>
             <?= $form->field($model, 'information')->textInput(['id' => 'information']) ?>
@@ -55,7 +41,7 @@ use kartik\date\DatePicker;
 
             <?= $form->field($model, 'approved_by')
                 ->dropDownList(
-                    \yii\helpers\ArrayHelper::map(\app\modules\account\models\Employee::find()->select(['id', 'first_name', 'last_name'])->where(['job_post' => Helper::MANAGER])->all(), 'id', 'fullName')
+                    \yii\helpers\ArrayHelper::map(\app\modules\account\models\Employee::find()->select(['id', 'first_name', 'last_name'])->where(['job_post' => Helper::MANAGER])->all(), 'id', 'FullName')
                 ) ?>
 
 
@@ -101,3 +87,26 @@ use kartik\date\DatePicker;
     <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
 </div>
 <?php ActiveForm::end(); ?>
+<?php
+$script = <<< JS
+$('#voucher-paid_to').on("select2:select", function(e) { 
+    var id = $('#voucher-paid_to').select2('data')[0].id;
+     $.ajax({
+            url: 'receiver-information?id='+id,
+            type: 'get',
+             success: function (data) {
+              var amount = jQuery.parseJSON(data);
+              console.log("tax",amount);
+              $('#avatar').empty();
+             $('#avatar').append('<img src='+amount.avatar+' class="pull-right thumbnail" style="width: 300px; height:300px; border: 1px;border-style: dashed;border-radius: 30px "; >');
+             $('#avatar').append('<p class=\'text-center\'>'+amount.job_post+'</p>');
+             
+             $('#amount').val(amount.payAmount); 
+             $('#tax_amount').val(amount.taxAmount); 
+
+           }
+
+      });
+});
+JS;
+$this->registerJs($script, View::POS_END); ?>

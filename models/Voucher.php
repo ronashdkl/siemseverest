@@ -40,7 +40,7 @@ class Voucher extends \yii\db\ActiveRecord
             [['date', 'amount', 'paid_to', 'account_of', 'has_received', 'accountant', 'approved_by','information'], 'required'],
           // [['date'], 'date', 'format' => 'php:yyyy-mm-dd'],
             [['date'], 'safe'],
-            [['amount'], 'number'],
+            [['amount','tax_amount'], 'number'],
             [['paid_to', 'accountant', 'approved_by'], 'integer'],
             [[ 'account_of'], 'string', 'max' => 200],
             [['has_received'], 'string', 'max' => 100],
@@ -59,7 +59,7 @@ class Voucher extends \yii\db\ActiveRecord
             'id' => 'ID',
             'date' => 'Date',
             'amount' => 'Amount',
-
+            'tax_amount'=>'Tax Amount',
             'paid_to' => 'Paid To',
             'account_of' => 'Account Of',
             'has_received' => 'Has Received',

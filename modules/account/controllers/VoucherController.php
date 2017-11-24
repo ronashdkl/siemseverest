@@ -4,6 +4,7 @@ namespace app\modules\account\controllers;
 
 use app\component\Helper;
 use app\modules\account\models\Employee;
+use app\modules\account\models\Tax;
 use Codeception\PHPUnit\ResultPrinter\HTML;
 use Yii;
 use app\models\Voucher;
@@ -18,6 +19,7 @@ use yii\filters\VerbFilter;
  */
 class VoucherController extends Controller
 {
+    public $layout ='admin';
     /**
      * @inheritdoc
      */
@@ -83,7 +85,15 @@ class VoucherController extends Controller
         $employee = Employee::findOne($id);
         if( is_numeric($id) && $employee->sallery!=null) {
             $sallery = $employee->sallery;
-            $tax = Helper::TAX;
+            $taxes = Tax::find()->all();
+            $tax= 0;
+            foreach($taxes as $tax){
+                if( ($tax['start_range'] <= $sallery) && ($sallery <= $tax['end_range']))
+                    $tax = $tax['tax_perc'];
+                else
+                    $tax = .25;
+            }
+
             $taxAmount = ($tax / 100) * $sallery;
             $calculate = $sallery - $taxAmount;
             $amount = [];
