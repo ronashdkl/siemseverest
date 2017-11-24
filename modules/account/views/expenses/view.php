@@ -44,7 +44,6 @@ $this->params['breadcrumbs'][] = $this->title;
                         'amount',
                         'date',
                         'description:ntext',
-                        'status',
                     ],
                 ]) ?>
             </div>

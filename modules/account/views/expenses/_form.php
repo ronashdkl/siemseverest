@@ -42,7 +42,7 @@ use app\models\Employee;
 
                 <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
 
-
+                <?= $form->field($model, 'status')->hiddenInput(['value'=>1])->label(false); ?>
                 <div class="form-group">
                     <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
                 </div>

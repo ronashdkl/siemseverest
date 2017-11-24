@@ -2,7 +2,9 @@
 
 namespace app\modules\account\controllers;
 
+use app\component\Helper;
 use app\models\Balance;
+use app\models\RefId;
 use Yii;
 use app\modules\account\models\Income;
 use app\modules\account\models\IncomeSearch;
@@ -40,7 +42,7 @@ class IncomeController extends Controller
     {
         $searchModel = new IncomeSearch();
 //        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-        $data = Income::find()->all();
+        $data = Income::findAll(['status'=>1]);
         return $this->render('index', [
             'searchModel' => $searchModel,
             'data' => $data,
@@ -67,14 +69,20 @@ class IncomeController extends Controller
     public function actionCreate()
     {
         $model = new Income();
-
+        $ref_id = new RefId();
+        $bal_model = new Balance();
+        $balance = Balance::find()->orderBy(['id' => SORT_DESC])->one();
         if ($model->load(Yii::$app->request->post())) {
-            $balance = Balance::find()->orderBy(['id' => SORT_DESC])->one();
+
             if($model->save() && $model->validate()){
-                $bal_model = new Balance();
+
+                //handling out for json string
+                $ref_id->table = Helper::INCOME;
+                $ref_id->id = $model->id;
+                //update balance table for new update
                 $bal_model->bank_amount = $balance['bank_amount']+$model->amount;
                 $bal_model->cash_amount = $balance['cash_amount'];
-                $bal_model->ref_id = "{table:insert,id:".$model->id."}";
+                $bal_model->ref_id = json_encode($ref_id);
                 $bal_model->save();
             }
             return $this->redirect(['view', 'id' => $model->id]);
@@ -93,11 +101,26 @@ class IncomeController extends Controller
      */
     public function actionUpdate($id)
     {
+        $bal_model = new Balance();
+        $ref_id = new RefId();
         $model = $this->findModel($id);
+        $prev_amount = $model->amount;  //getting previous amount
         $balance = Balance::find()->orderBy(['id' => SORT_DESC])->one();
         if ($model->load(Yii::$app->request->post())) {
-            //$model->
-            $model->save();
+            if($model->save()){
+                if($model->amount > $prev_amount){
+                    $bal_model->bank_amount = $balance['bank_amount']+($model->amount-$prev_amount);
+                }elseif ($prev_amount > $model->amount){
+                    $bal_model->bank_amount = $balance['bank_amount']-($prev_amount - $model->amount);
+                }else{
+                    $bal_model->bank_amount = $balance["bank_amount"];
+                }
+                $ref_id->id = $model->id;
+                $ref_id->table = Helper::INCOME;
+                $bal_model->ref_id = json_encode($ref_id);
+                $bal_model->cash_amount = $balance['cash_amount'];
+                $bal_model->save();
+            }
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [

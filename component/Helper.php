@@ -25,4 +25,9 @@ class Helper
 
     const TAX = 1;
 
+    //table name income
+    const INCOME ="incomes";
+    //table name expense
+    const EXPENSES = "expenses";
+
 }

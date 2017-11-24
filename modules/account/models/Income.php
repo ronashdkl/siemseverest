@@ -13,6 +13,7 @@ use Yii;
  * @property string $date
  * @property string $received_by
  * @property string $description
+ * @property integer $status
  */
 class Income extends \yii\db\ActiveRecord
 {
@@ -30,8 +31,7 @@ class Income extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['amount','date','source'],'required'],
-            [['amount'], 'integer'],
+            [['amount', 'status'], 'integer'],
             [['date'], 'safe'],
             [['description'], 'string'],
             [['source', 'received_by'], 'string', 'max' => 255],
@@ -50,6 +50,7 @@ class Income extends \yii\db\ActiveRecord
             'date' => 'Date',
             'received_by' => 'Received By',
             'description' => 'Description',
+            'status' => 'Status',
         ];
     }
 }

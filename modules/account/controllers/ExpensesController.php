@@ -2,6 +2,9 @@
 
 namespace app\modules\account\controllers;
 
+use app\component\Helper;
+use app\models\Balance;
+use app\models\RefId;
 use Yii;
 use app\modules\account\models\ExpensesSearch;
 use app\modules\account\models\Expenses;
@@ -38,7 +41,7 @@ class ExpensesController extends Controller
     {
         $searchModel = new ExpensesSearch();
 //        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-        $data = Expenses::find()->all();
+        $data = Expenses::findAll(['status'=> 1]);
 
         return $this->render('index', [
             'searchModel' => $searchModel,
@@ -66,8 +69,20 @@ class ExpensesController extends Controller
     public function actionCreate()
     {
         $model = new Expenses();
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        $ref_id = new RefId();
+        $bal_model = new Balance();
+        $balance = Balance::find()->orderBy(['id' => SORT_DESC])->one();
+        if ($model->load(Yii::$app->request->post())) {
+            if($model->save() && $model->validate()){
+                //class handling out for json string
+                $ref_id->table = Helper::EXPENSES;
+                $ref_id->id = $model->id;
+                //update balance table for new update
+                $bal_model->bank_amount = $balance['bank_amount']-$model->amount;
+                $bal_model->cash_amount = $balance['cash_amount'];
+                $bal_model->ref_id = json_encode($ref_id);
+                $bal_model->save();
+            }
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
@@ -85,8 +100,25 @@ class ExpensesController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        $ref_id = new RefId();
+        $balance = Balance::find()->orderBy(['id' => SORT_DESC])->one();
+        $bal_model = new Balance();
+        $prev_amount = $model->amount;
+        if ($model->load(Yii::$app->request->post())) {
+            if($model->save() && $model->validate()){
+                if($model->amount > $prev_amount){
+                    $bal_model->bank_amount = $balance['bank_amount']-($model->amount-$prev_amount);
+                }elseif ($prev_amount > $model->amount){
+                    $bal_model->bank_amount = $balance['bank_amount']+($prev_amount - $model->amount);
+                }else{
+                    $bal_model->bank_amount = $balance["bank_amount"];
+                }
+                $ref_id->id = $model->id;
+                $ref_id->table = Helper::EXPENSES;
+                $bal_model->ref_id = json_encode($ref_id);
+                $bal_model->cash_amount = $balance['cash_amount'];
+                $bal_model->save();
+            }
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [

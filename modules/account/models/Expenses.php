@@ -2,6 +2,7 @@
 
 namespace app\modules\account\models;
 
+use app\models\Balance;
 use Yii;
 
 /**
@@ -31,8 +32,9 @@ class Expenses extends \yii\db\ActiveRecord
     {
         return [
             [['title','amount','date'],'required'],
-            [['title'], 'required'],
             [['amount', 'status'], 'integer'],
+            // validates if age is greater than or equal to 30
+            ['amount', 'compare', 'compareValue' => $this->validateAmount(), 'operator' => '<=', 'type' => 'number'],
             [['date'], 'safe'],
             [['description'], 'string'],
             [['title'], 'string', 'max' => 255],
@@ -52,5 +54,11 @@ class Expenses extends \yii\db\ActiveRecord
             'description' => 'Description',
             'status' => 'Status',
         ];
+    }
+
+    public function validateAmount()
+    {
+       $balance = Balance::find()->orderBy(['id' => SORT_DESC])->one();
+        return  $balance['bank_amount'];
     }
 }
