@@ -2,6 +2,8 @@
 
 namespace app\modules\account\controllers;
 
+use app\models\Balance;
+use app\models\RefId;
 use app\component\Helper;
 use app\modules\account\models\Employee;
 use app\modules\account\models\Tax;
@@ -69,9 +71,20 @@ class VoucherController extends Controller
     public function actionCreate()
     {
         $model = new Voucher();
-
-        if ($model->load(Yii::$app->request->post()) && $model->save(false)) {
-
+        $ref_id = new RefId();
+        $bal_model = new Balance();
+        $balance = Balance::find()->orderBy(['id' => SORT_DESC])->one();
+        if ($model->load(Yii::$app->request->post())) {
+            if($model->save() && $model->validate()){
+                //class handling out for json string
+                $ref_id->table = Helper::VOUCHER;
+                $ref_id->id = $model->id;
+                //update balance table for new update
+                $bal_model->bank_amount = $balance['bank_amount']-$model->amount;
+                $bal_model->cash_amount = $balance['cash_amount'];
+                $bal_model->ref_id = json_encode($ref_id);
+                $bal_model->save();
+            }
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
@@ -91,10 +104,10 @@ class VoucherController extends Controller
                 if( ($tax['start_range'] <= $sallery) && ($sallery <= $tax['end_range']))
                     $tax = $tax['tax_perc'];
                 else
-                    $tax = .25;
+                    $tax = Helper::TAX;
             }
 
-            $taxAmount = ($tax / 100) * $sallery;
+            $taxAmount = $tax * $sallery;
             $calculate = $sallery - $taxAmount;
             $amount = [];
             $amount['tax'] = $tax."%";
@@ -119,8 +132,26 @@ class VoucherController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $ref_id = new RefId();
+        $balance = Balance::find()->orderBy(['id' => SORT_DESC])->one();
+        $bal_model = new Balance();
+        $prev_amount = $model->amount;
 
-        if ($model->load(Yii::$app->request->post()) && $model->save(false)) {
+        if ($model->load(Yii::$app->request->post())) {
+            if($model->save() && $model->validate()){
+                if($model->amount > $prev_amount){
+                    $bal_model->bank_amount = $balance['bank_amount']-($model->amount-$prev_amount);
+                }elseif ($prev_amount > $model->amount){
+                    $bal_model->bank_amount = $balance['bank_amount']+($prev_amount - $model->amount);
+                }else{
+                    $bal_model->bank_amount = $balance["bank_amount"];
+                }
+                $ref_id->id = $model->id;
+                $ref_id->table = Helper::VOUCHER;
+                $bal_model->ref_id = json_encode($ref_id);
+                $bal_model->cash_amount = $balance['cash_amount'];
+                $bal_model->save();
+            }
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [

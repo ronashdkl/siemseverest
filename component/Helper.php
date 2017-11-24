@@ -23,7 +23,7 @@ class Helper
     const INTERNSHIP = "Internship";
     const OFFICEASSISTANCE = "Office Assistance";
 
-    const TAX = 1;
+    const TAX = .25;
 
     //table name income
     const INCOME ="incomes";
@@ -31,5 +31,7 @@ class Helper
     const EXPENSES = "expenses";
     //table for withdraw
     const WITHDRAW = "withdraw";
+    //voucher as salary table name
+    const VOUCHER = "voucher";
 
 }
