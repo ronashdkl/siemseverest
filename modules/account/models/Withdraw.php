@@ -8,7 +8,6 @@ use Yii;
  * This is the model class for table "withdraw".
  *
  * @property integer $id
- * @property string $title
  * @property integer $amount
  * @property string $date
  * @property string $received_by
@@ -34,8 +33,8 @@ class Withdraw extends \yii\db\ActiveRecord
         return [
             [['amount', 'status'], 'integer'],
             [['date'], 'safe'],
-            [['title', 'purpose'], 'string', 'max' => 25],
             [['received_by', 'description'], 'string', 'max' => 255],
+            [['purpose'], 'string', 'max' => 25],
         ];
     }
 
@@ -46,7 +45,6 @@ class Withdraw extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'title' => 'Title',
             'amount' => 'Amount',
             'date' => 'Date',
             'received_by' => 'Received By',

@@ -19,7 +19,7 @@ class WithdrawSearch extends Withdraw
     {
         return [
             [['id', 'amount', 'received_by', 'status'], 'integer'],
-            [['title', 'date', 'description', 'purpose'], 'safe'],
+            [[ 'date', 'description', 'purpose'], 'safe'],
         ];
     }
 
@@ -66,8 +66,7 @@ class WithdrawSearch extends Withdraw
             'status' => $this->status,
         ]);
 
-        $query->andFilterWhere(['like', 'title', $this->title])
-            ->andFilterWhere(['like', 'description', $this->description])
+        $query->andFilterWhere(['like', 'description', $this->description])
             ->andFilterWhere(['like', 'purpose', $this->purpose]);
 
         return $dataProvider;

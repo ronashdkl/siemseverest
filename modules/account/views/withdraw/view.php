@@ -6,7 +6,6 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model app\modules\account\models\Withdraw */
 
-$this->title = $model->title;
 $this->params['breadcrumbs'][] = ['label' => 'Withdraws', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -29,7 +28,6 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'id',
-            'title',
             'amount',
             'date',
             'received_by',

@@ -17,7 +17,7 @@ use kartik\date\DatePicker;
 
             <?=
             $form->field($model, 'paid_to')->widget(Select2::classname(), [
-                'data' => \yii\helpers\ArrayHelper::map(\app\models\Employee::find()->all(), 'id', 'fullName'),
+                'data' => \yii\helpers\ArrayHelper::map(\app\modules\account\models\Employee::find()->all(), 'id', 'fullName'),
                 'language' => 'en',
                 'options' => ['placeholder' => 'Select Employee'],
                 'pluginOptions' => [
@@ -50,12 +50,12 @@ use kartik\date\DatePicker;
 
             <?= $form->field($model, 'accountant')
                 ->dropDownList(
-                    \yii\helpers\ArrayHelper::map(\app\models\Employee::find()->select(['id', 'first_name', 'last_name'])->where(['job_post' => Helper::ACCOUNTANT])->all(), 'id', 'fullName')
+                    \yii\helpers\ArrayHelper::map(\app\modules\account\models\Employee::find()->select(['id', 'first_name', 'last_name'])->where(['job_post' => Helper::ACCOUNTANT])->all(), 'id', 'fullName')
                 ) ?>
 
             <?= $form->field($model, 'approved_by')
                 ->dropDownList(
-                    \yii\helpers\ArrayHelper::map(\app\models\Employee::find()->select(['id', 'first_name', 'last_name'])->where(['job_post' => Helper::MANAGER])->all(), 'id', 'FullName')
+                    \yii\helpers\ArrayHelper::map(\app\modules\account\models\Employee::find()->select(['id', 'first_name', 'last_name'])->where(['job_post' => Helper::MANAGER])->all(), 'id', 'fullName')
                 ) ?>
 
 

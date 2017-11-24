@@ -56,7 +56,6 @@ Modal::end();
                     <th>Description</th>
                     <th>Purpose</th>
                     <th>Date</th>
-                    <th>Status</th>
                     <th>Action</th>
                 </tr>
                 </thead>
@@ -64,7 +63,6 @@ Modal::end();
                 <?php foreach($data as $each_data){?>
                     <tr>
                         <td scope="row"><?= $counter++?></th>
-                        <td><?= $each_data->title?></td>
                         <td><?= $each_data->amount?></td>
                         <td><?= $each_data->received_by?></td>
                         <td><?= $each_data->description?></td>
@@ -80,19 +78,19 @@ Modal::end();
                         <td>
                             <ul class="list-unstyled">
                                 <li style="display:inline-block">
-                                    <a class=" btn btn-success btn-sm field-tip pointer" href="view?id=<?= $each_data->id ?>">
+                                    <a class=" btn btn-success btn-sm field-tip pointer" href="withdraw/view?id=<?= $each_data->id ?>">
                                         <span class="fa fa-eye"></span>
                                     </a>
                                     <span class="tip-content" style="display: none;">View</span>
                                 </li>
                                 <li style="display:inline-block"  >
-                                    <button class="btn btn-danger btn-sm field-tip pointer" id="delete_btn" data-toggle="modal" data-target="#myModalnote<?=$each_data->id?>">
+                                    <button class="btn btn-danger btn-sm field-tip pointer" id="withdraw/delete_btn" data-toggle="modal" data-target="#myModalnote<?=$each_data->id?>">
                                         <span class="fa fa-trash-o"></span>
                                     </button>
                                     <span class="tip-content" style="display: none;">Delete</span>
                                 </li>
                                 <li style="display:inline-block"  >
-                                    <a class=" btn btn-primary btn-sm field-tip pointer" href="update?id=<?= $each_data->id ?>">
+                                    <a class=" btn btn-primary btn-sm field-tip pointer" href="withdraw/update?id=<?= $each_data->id ?>">
                                         <span class="fa fa-edit"></span>
                                     </a>
                                     <span class="tip-content" style="display: none;">Edit</span>

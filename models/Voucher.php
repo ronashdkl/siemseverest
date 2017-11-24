@@ -74,7 +74,7 @@ class Voucher extends \yii\db\ActiveRecord
      */
     public function getAccountant0()
     {
-        return $this->hasOne(Employee::className(), ['id' => 'accountant']);
+        return $this->hasOne(\app\modules\account\models\Employee::className(), ['id' => 'accountant']);
     }
 
     /**
@@ -82,7 +82,7 @@ class Voucher extends \yii\db\ActiveRecord
      */
     public function getApprovedBy()
     {
-        return $this->hasOne(Employee::className(), ['id' => 'approved_by']);
+        return $this->hasOne(\app\modules\account\models\Employee::className(), ['id' => 'approved_by']);
     }
 
     /**
@@ -90,7 +90,7 @@ class Voucher extends \yii\db\ActiveRecord
      */
     public function getPaidTo()
     {
-        return $this->hasOne(Employee::className(), ['id' => 'paid_to']);
+        return $this->hasOne(\app\modules\account\models\Employee::className(), ['id' => 'paid_to']);
     }
 
     public function delete()

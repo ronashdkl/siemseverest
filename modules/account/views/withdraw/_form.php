@@ -19,8 +19,6 @@ use yii\helpers\ArrayHelper;
                 'action' => 'create'
             ]); ?>
 
-            <?= $form->field($model, 'title')->textInput(['maxlength' => true ,'id'=>'quantity']) ?>
-
             <?= $form->field($model, 'amount')->textInput() ?>
 
             <?= $form->field($model, 'date')->widget(DatePicker::classname(), [
@@ -34,20 +32,23 @@ use yii\helpers\ArrayHelper;
             <?php
             $employee = Employee::find()->all();
             $employee_array = ArrayHelper::map($employee, 'fullname', 'fullName');
-            array_push($employee_array,"other");
+            $employee_array["other"] = "other";
             ?>
-            <?= Html::dropDownList('s_id', null,$employee_array,
+
+            <?php
+            echo $form->field($model, 'received_by')->textInput(['id'=>'received_by','class'=>'hidden','value'=>reset($employee_array)]);
+            echo Html::dropDownList('s_id', null,$employee_array,
                 [
-                    'onchange'=>'if($(this).val() == '.count($employee_array).'){
-                         $("#received_by").removeClass("hidden"); }else{
+                    'onchange'=>'if($(this).val() == "other"){
+                         $("#received_by").empty();
+                         $("#received_by").removeClass("hidden"); 
+                         }else{
                              var name = $(this).val();
                            $("#received_by").empty();
                            $("#received_by").val(name);
                           }'
-                ]) ?>
-
-
-            <?= $form->field($model, 'received_by')->textInput(['id'=>'received_by','class'=>'hidden','value'=>reset($employee_array)]);?>
+                ]);
+           ?>
 
 
 

@@ -48,4 +48,7 @@ class Balance extends \yii\db\ActiveRecord
     public function getTotalBalance(){
         return $this->bank_amount+$this->cash_amount;
     }
+    public function getfullName(){
+        return $this->first_name.' '.$this->last_name;
+    }
 }

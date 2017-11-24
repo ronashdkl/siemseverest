@@ -3,7 +3,7 @@
 namespace app\modules\account\controllers;
 
 use app\component\Helper;
-use app\models\Employee;
+use app\modules\account\models\Employee;
 use Codeception\PHPUnit\ResultPrinter\HTML;
 use Yii;
 use app\models\Voucher;
@@ -41,7 +41,6 @@ class VoucherController extends Controller
     {
         $searchModel = new VoucherSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
