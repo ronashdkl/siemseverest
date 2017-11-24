@@ -82,7 +82,7 @@ Modal::end();
                                     <span class="tip-content" style="display: none;">View</span>
                                 </li>
                                 <li style="display:inline-block"  >
-                                    <button class="btn btn-danger btn-sm field-tip pointer" data-toggle="modal" data-target="#myModalnote<?=$each_data->id?>">
+                                    <button class="btn btn-danger btn-sm field-tip pointer" id="delete_btn" data-toggle="modal" data-target="#myModalnote<?=$each_data->id?>">
                                         <span class="fa fa-trash-o"></span>
                                     </button>
                                     <span class="tip-content" style="display: none;">Delete</span>
@@ -98,7 +98,7 @@ Modal::end();
                     </tr>
 
                     <!-- delete modal -->
-                    <div class="modal fade" id="myModalnote<?=$each_data->id?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                    <div class="modal fade" id="delete_Modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -131,7 +131,16 @@ Modal::end();
 $script = <<< JS
 $(document).ready(function(){
     $('#expenses_table').DataTable({"aoColumnDefs": [{ 'bSortable': false, 'aTargets': [-1] }]});
+    
+$('#delete_btn').on('click',function(event){
+    $('#delete_Modal').modal('show');
+    event.stopPropagation();
+});
 
+$('#createbtn').on('click',function(event){
+    $('#createModal').modal('show');
+    event.stopPropagation();
+});
 });
 JS;
 $this->registerJs($script, View::POS_END); ?>
