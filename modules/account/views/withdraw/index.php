@@ -21,7 +21,7 @@ Modal::begin([
     'id'=>'createModal',
     'size'=>'modal-lg'
 ]);
-echo '<div id="creatediv" style="overflow-y: auto;max-height: calc(100vh - 100px);">'. $this->render('_createform',['model'=> $model]).'</div>';
+echo '<div id="creatediv" style="overflow-y: auto;max-height: calc(100vh - 100px);">'. $this->render('_form',['model'=> $model]).'</div>';
 Modal::end();
 
 ?>
@@ -50,12 +50,12 @@ Modal::end();
                 <thead>
                 <tr>
                     <th>S.No.</th>
-                    <th>Title</th>
                     <th>Amount</th>
                     <th>Received By</th>
                     <th>Description</th>
                     <th>Purpose</th>
                     <th>Date</th>
+                    <th>Status</th>
                     <th>Action</th>
                 </tr>
                 </thead>
@@ -78,7 +78,7 @@ Modal::end();
                         <td>
                             <ul class="list-unstyled">
                                 <li style="display:inline-block">
-                                    <a class=" btn btn-success btn-sm field-tip pointer" href="withdraw/view?id=<?= $each_data->id ?>">
+                                    <a class=" btn btn-success btn-sm field-tip pointer" href="view?id=<?= $each_data->id ?>">
                                         <span class="fa fa-eye"></span>
                                     </a>
                                     <span class="tip-content" style="display: none;">View</span>
@@ -90,7 +90,7 @@ Modal::end();
                                     <span class="tip-content" style="display: none;">Delete</span>
                                 </li>
                                 <li style="display:inline-block"  >
-                                    <a class=" btn btn-primary btn-sm field-tip pointer" href="withdraw/update?id=<?= $each_data->id ?>">
+                                    <a class=" btn btn-primary btn-sm field-tip pointer" href="update?id=<?= $each_data->id ?>">
                                         <span class="fa fa-edit"></span>
                                     </a>
                                     <span class="tip-content" style="display: none;">Edit</span>
