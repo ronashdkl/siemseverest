@@ -340,6 +340,9 @@ AdminAsset::register($this);
                         <li class="treeview">
                             <a href="<?= Url::toRoute('withdraw/index')?>"><i class="fa fa-circle-o"></i>Withdraw</a>
                         </li>
+                        <li class="treeview">
+                            <a href="<?= Url::toRoute('voucher/index')?>"><i class="fa fa-circle-o"></i>Salary</a>
+                        </li>
                     </ul>
                 </li>
                 <li class="treeview">
