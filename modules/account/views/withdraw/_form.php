@@ -15,9 +15,7 @@ use yii\helpers\ArrayHelper;
 <div class="container-fluid">
     <section class="connectedSortable">
         <div class="box-body">
-            <?php $form = ActiveForm::begin([
-                'action' => 'create'
-            ]); ?>
+            <?php $form = ActiveForm::begin(); ?>
 
             <?= $form->field($model, 'amount')->textInput() ?>
 

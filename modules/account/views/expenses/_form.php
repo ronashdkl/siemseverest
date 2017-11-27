@@ -5,6 +5,8 @@ use yii\helpers\ArrayHelper;
 use yii\widgets\ActiveForm;
 use kartik\date\DatePicker;
 use app\models\Employee;
+use app\component\Helper;
+use yii\bootstrap\Dropdown;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Expenses */
@@ -15,12 +17,12 @@ use app\models\Employee;
     <section class="connectedSortable">
         <div class="box-body">
 
-            <?php $form = ActiveForm::begin([
-                'action' => 'create',
-            ]); ?>
+            <?php $form = ActiveForm::begin(); ?>
             <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
 
             <?= $form->field($model, 'amount') ?>
+
+            <?= $form->field($model, 'method')->dropDownList(Helper::METHOD) ?>
 
             <?php echo $form->field($model, 'date')->widget(DatePicker::classname(), [
                 'options' => ['placeholder' => 'Enter birth date ...'],

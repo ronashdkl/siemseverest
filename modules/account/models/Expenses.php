@@ -31,12 +31,12 @@ class Expenses extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['title','amount','date'],'required'],
+            [['title','amount','date','method'],'required'],
             [['amount', 'status'], 'integer'],
             // validates if age is greater than or equal to 30
             ['amount', 'compare', 'compareValue' => $this->validateAmount(), 'operator' => '<=', 'type' => 'number'],
             [['date'], 'safe'],
-            [['description'], 'string'],
+            [['description','method'], 'string'],
             [['title'], 'string', 'max' => 255],
         ];
     }

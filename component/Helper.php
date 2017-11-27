@@ -33,5 +33,7 @@ class Helper
     const WITHDRAW = "withdraw";
     //voucher as salary table name
     const VOUCHER = "voucher";
+    //method of payment for expenses
+    const METHOD =['cash'=>'cash','bank'=>'bank'];
 
 }

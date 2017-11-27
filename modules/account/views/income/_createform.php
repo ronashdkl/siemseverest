@@ -4,9 +4,13 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use kartik\date\DatePicker;
 use app\component\Helper;
-/* @var $this yii\web\View */
-/* @var $model app\modules\account\models\Income */
-/* @var $form yii\widgets\ActiveForm */
+/**
+ * Created by PhpStorm.
+ * User: Binay
+ * Date: 27/11/2017
+ * Time: 12:20
+ */
+
 ?>
 
 <div class="container-fluid">
@@ -45,4 +49,5 @@ use app\component\Helper;
 
     </section>
 </div>
+
 

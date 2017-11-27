@@ -80,8 +80,8 @@ class ExpensesController extends Controller
                 $ref_id->table = Helper::EXPENSES;
                 $ref_id->id = $model->id;
                 //update balance table for new update
-                $bal_model->bank_amount = $balance['bank_amount']-$model->amount;
-                $bal_model->cash_amount = $balance['cash_amount'];
+                $bal_model->bank_amount = $balance['bank_amount'];
+                $bal_model->cash_amount = $balance['cash_amount']-$model->amount;
                 $bal_model->ref_id = json_encode($ref_id);
                 $bal_model->save();
             }
@@ -109,16 +109,16 @@ class ExpensesController extends Controller
         if ($model->load(Yii::$app->request->post())) {
             if($model->save() && $model->validate()){
                 if($model->amount > $prev_amount){
-                    $bal_model->bank_amount = $balance['bank_amount']-($model->amount-$prev_amount);
+                    $bal_model->bank_amount = $balance['cash_amount']-($model->amount-$prev_amount);
                 }elseif ($prev_amount > $model->amount){
-                    $bal_model->bank_amount = $balance['bank_amount']+($prev_amount - $model->amount);
+                    $bal_model->bank_amount = $balance['cash_amount']+($prev_amount - $model->amount);
                 }else{
-                    $bal_model->bank_amount = $balance["bank_amount"];
+                    $bal_model->bank_amount = $balance["cash_amount"];
                 }
                 $ref_id->id = $model->id;
                 $ref_id->table = Helper::EXPENSES;
                 $bal_model->ref_id = json_encode($ref_id);
-                $bal_model->cash_amount = $balance['cash_amount'];
+                $bal_model->bank_amount = $balance['bank_amount'];
                 $bal_model->save();
             }
             return $this->redirect(['view', 'id' => $model->id]);

@@ -21,7 +21,7 @@ Modal::begin([
     'id'=>'createModal',
     'size'=>'modal-lg'
 ]);
-echo '<div id="creatediv" style="overflow-y: auto;max-height: calc(100vh - 100px);">'. $this->render('_form',['model'=> $model]).'</div>';
+echo '<div id="creatediv" style="overflow-y: auto;max-height: calc(100vh - 100px);">'. $this->render('_createform',['model'=> $model]).'</div>';
 Modal::end();
 
 ?>
