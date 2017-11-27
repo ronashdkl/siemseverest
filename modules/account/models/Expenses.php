@@ -3,6 +3,7 @@
 namespace app\modules\account\models;
 
 use app\models\Balance;
+use function foo\func;
 use Yii;
 
 /**
@@ -34,10 +35,16 @@ class Expenses extends \yii\db\ActiveRecord
             [['title','amount','date','method'],'required'],
             [['amount', 'status'], 'integer'],
             // validates if age is greater than or equal to 30
-            ['amount', 'compare', 'compareValue' => $this->validateAmount(), 'operator' => '<=', 'type' => 'number'],
+            ['amount', 'validateAmount', 'when' => function($model){
+            if($model->method !=""){
+                return true;
+            }else{
+                return false;
+            }
+            }],
             [['date'], 'safe'],
             [['description','method'], 'string'],
-            [['title'], 'string', 'max' => 255],
+            [['title'],'match','pattern'=>'/^[a-z]\w*$/i'],
         ];
     }
 
@@ -55,10 +62,22 @@ class Expenses extends \yii\db\ActiveRecord
             'status' => 'Status',
         ];
     }
-
-    public function validateAmount()
+public function validateTitle($attribute,$params,$validator){
+        $title = $this->title;
+        if(! preg_match([A-Za-z],$title)){
+            $this->addError('title',"Title must be attribute");
+        }
+}
+    public function validateAmount($attribute,$params,$validator)
     {
-       $balance = Balance::find()->orderBy(['id' => SORT_DESC])->one();
-        return  $balance['bank_amount'];
+        $balance = Balance::find()->orderBy(['id' => SORT_DESC])->one();
+        $method = $this->method;
+        if($method=="cash"){
+            if($this->amount > $balance['cash_amount'])
+            $this->addError('amount',"Expense must be less than cash amount");
+        }else{
+            if($this->amount > $balance['bank_amount'])
+                $this->addError('amount',"Expense must be less than Bank amount");
+        }
     }
 }

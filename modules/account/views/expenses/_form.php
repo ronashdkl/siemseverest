@@ -7,7 +7,8 @@ use kartik\date\DatePicker;
 use app\models\Employee;
 use app\component\Helper;
 use yii\bootstrap\Dropdown;
-
+use kartik\select2\Select2;
+use yii\web\View;
 /* @var $this yii\web\View */
 /* @var $model app\models\Expenses */
 /* @var $form yii\widgets\ActiveForm */
@@ -17,21 +18,23 @@ use yii\bootstrap\Dropdown;
     <section class="connectedSortable">
         <div class="box-body">
 
-            <?php $form = ActiveForm::begin(); ?>
+            <?php $form = ActiveForm::begin([
+                    'action'=> ($model->isNewRecord)?'create':'update?id='.$model->id,
+                    'enableClientValidation' => false,
+                    'enableAjaxValidation' => true]); ?>
             <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
 
-            <?= $form->field($model, 'amount') ?>
-
-            <?= $form->field($model, 'method')->dropDownList(Helper::METHOD) ?>
-
-            <?php echo $form->field($model, 'date')->widget(DatePicker::classname(), [
-                'options' => ['placeholder' => 'Enter birth date ...'],
+            <?= $form->field($model, 'method')->widget(Select2::classname(), [
+                'data' => Helper::METHOD,
+                'language' => 'en',
+                'id'=>'expense_method',
+                'options' => ['placeholder' => 'Select method of payment'],
                 'pluginOptions' => [
-                    'autoclose'=>true,
-                    'format' => 'yyyy-m-dd'
+                    'allowClear' => true
                 ]
-            ]);
-            ?>
+            ]) ?>
+
+            <?= $form->field($model, 'amount') ?>
 
             <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
 
@@ -45,3 +48,18 @@ use yii\bootstrap\Dropdown;
         <!-- /.box-body -->
     </section>
 </div>
+<?php
+$script = <<< JS
+$('#expenses-method').on("select2:select", function(e) { 
+    var method = $('#expenses-method').val();
+     $.ajax({
+            url: 'method-validate?id='+method,
+            type: 'get',
+             success: function (data) {
+              alert(data);
+           }
+
+      });
+});
+JS;
+$this->registerJs($script, View::POS_END); ?>
