@@ -12,7 +12,6 @@ use yii\web\View;
 
 $this->title = 'Vouchers';
 $counter=1;
-var_dump($data);exit;
 ?>
 
 <section class="content-header">
@@ -50,8 +49,14 @@ var_dump($data);exit;
                         <td scope="row"><?= $counter++?></th>
                         <td><?= $each_data->amount?></td>
                         <td><?= $each_data->date?></td>
-                        <td><?= $each_data->paid_to?></td>
-                        <td><?= $each_data->has_received?></td>
+                        <td><?= $each_data->paidTo->fullName?></td>
+                        <td class="col text-center">
+                            <?php if($each_data->has_received == '1'){?>
+                                <span class="fa fa-check" aria-hidden="true"></span>
+                            <?php }else { ?>
+                                <span class="fa fa-times" aria-hidden="true"></span>
+                            <?php } ?>
+                        </td>
                         <td>
                             <ul class="list-unstyled">
                                 <li style="display:inline-block">
@@ -61,7 +66,7 @@ var_dump($data);exit;
                                     <span class="tip-content" style="display: none;">View</span>
                                 </li>
                                 <li style="display:inline-block"  >
-                                    <button class="btn btn-danger btn-sm field-tip pointer delete_btn" data-content="<?= $each_data->id?>">
+                                    <button class="btn btn-danger btn-sm field-tip pointer" id="delete_btn" data-toggle="modal" data-target="#myModalnote<?=$each_data->id?>">
                                         <span class="fa fa-trash-o"></span>
                                     </button>
                                     <span class="tip-content" style="display: none;">Delete</span>
@@ -77,7 +82,7 @@ var_dump($data);exit;
                     </tr>
 
                     <!-- delete modal -->
-                    <div class="modal fade" id="delete_Modal<?=$each_data->id?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                    <div class="modal fade" id="delete_Modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -111,11 +116,11 @@ $script = <<< JS
 $(document).ready(function(){
     $('#voucher_table').DataTable({"aoColumnDefs": [{ 'bSortable': false, 'aTargets': [-1] }]});
     
-$('.delete_btn').on('click',function(event){
-    var id = $(this).attr("data-content");
-    $('#delete_Modal'+id).modal('show');
+$('#delete_btn').on('click',function(event){
+    $('#delete_Modal').modal('show');
     event.stopPropagation();
 });
+
 $('#createbtn').on('click',function(event){
     $('#createModal').modal('show');
     event.stopPropagation();
