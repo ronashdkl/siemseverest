@@ -126,6 +126,7 @@ class WithdrawController extends Controller
         } else {
             return $this->render('update', [
                 'model' => $model,
+                'id' => $id
             ]);
         }
     }

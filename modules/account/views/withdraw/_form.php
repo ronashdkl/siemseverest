@@ -6,6 +6,7 @@ use kartik\date\DatePicker;
 use app\component\Helper;
 use app\modules\account\models\Employee;
 use yii\helpers\ArrayHelper;
+use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $model app\modules\account\models\Withdraw */
@@ -15,7 +16,9 @@ use yii\helpers\ArrayHelper;
 <div class="container-fluid">
     <section class="connectedSortable">
         <div class="box-body">
-            <?php $form = ActiveForm::begin(); ?>
+            <?php $form = ActiveForm::begin([
+                'action' => $model->isNewRecord ? Url::toRoute('/account/withdraw/create') : Url::toRoute('/account/withdraw/update?id='.$id)
+            ]); ?>
 
             <?= $form->field($model, 'amount')->textInput() ?>
 
