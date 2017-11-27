@@ -107,8 +107,7 @@ class IncomeController extends Controller
         $model = $this->findModel($id);
         $prev_amount = $model->amount;  //getting previous amount
         $balance = Balance::find()->orderBy(['id' => SORT_DESC])->one();
-        if ($model->load(Yii::$app->request->post())) {
-            if($model->save()){
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
                 if($model->amount > $prev_amount){
                     $bal_model->bank_amount = $balance['bank_amount']+($model->amount-$prev_amount);
                 }elseif ($prev_amount > $model->amount){
@@ -121,7 +120,6 @@ class IncomeController extends Controller
                 $bal_model->ref_id = json_encode($ref_id);
                 $bal_model->cash_amount = $balance['cash_amount'];
                 $bal_model->save();
-            }
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
