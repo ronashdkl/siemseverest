@@ -11,6 +11,9 @@ use app\modules\account\models\Expenses;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\widgets\ActiveForm;
+use yii\web\Response;
+
 
 /**
  * ExpensesController implements the CRUD actions for Expenses model.
@@ -74,6 +77,14 @@ class ExpensesController extends Controller
         $ref_id = new RefId();
         $bal_model = new Balance();
         $balance = Balance::find()->orderBy(['id' => SORT_DESC])->one();
+
+        if (Yii::$app->request->isAjax) {
+            $model->load($_POST);
+            Yii::$app->response->format = Response::FORMAT_JSON;
+            return ActiveForm::validate($model);
+        }
+
+
         if ($model->load(Yii::$app->request->post())) {
             if($model->save() && $model->validate()){
                 //class handling out for json string
@@ -167,6 +178,18 @@ class ExpensesController extends Controller
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
+    public function actionMethodValidate($id)
+    {
+        $balance = Balance::find()->orderBy(['id' => SORT_DESC])->one();
+       if($id == "cash"){
+           return $balance["cash_amount"];
+       }else{
+           return $balance["bank_amount"];
+       }
+    }
+    public function actionSalaryslip()
+    {
+     return $this->render('salaryslip');
+    }
 
-    
 }

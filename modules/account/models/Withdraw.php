@@ -35,6 +35,7 @@ class Withdraw extends \yii\db\ActiveRecord
             [['date'], 'safe'],
             [['received_by', 'description'], 'string', 'max' => 255],
             [['purpose'], 'string', 'max' => 25],
+            [['amount','date','received_by','purpose'],'required']
         ];
     }
 
