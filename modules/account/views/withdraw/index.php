@@ -84,7 +84,7 @@ Modal::end();
                                     <span class="tip-content" style="display: none;">View</span>
                                 </li>
                                 <li style="display:inline-block"  >
-                                    <button class="btn btn-danger btn-sm field-tip pointer" id="withdraw/delete_btn" data-toggle="modal" data-target="#myModalnote<?=$each_data->id?>">
+                                    <button class="btn btn-danger btn-sm field-tip pointer delete_btn" data-content="<?= $each_data->id?>">
                                         <span class="fa fa-trash-o"></span>
                                     </button>
                                     <span class="tip-content" style="display: none;">Delete</span>
@@ -100,7 +100,7 @@ Modal::end();
                     </tr>
 
                     <!-- delete modal -->
-                    <div class="modal fade" id="delete_Modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                    <div class="modal fade" id="delete_Modal<?=$each_data->id?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -110,7 +110,7 @@ Modal::end();
                                 <div class="modal-body">
                                     <h5>Are you sure you want to delete this file?</h5>
                                     <?php $form=ActiveForm::begin([
-                                        'action' => 'delete-expenses',
+                                        'action' => "#",
 
                                     ]);  ?>
                                     <?= Html::input('hidden', 'id',$each_data->id, ['class' => '']) ?>
@@ -134,10 +134,11 @@ $script = <<< JS
 $(document).ready(function(){
     $('#withdraw_table').DataTable({"aoColumnDefs": [{ 'bSortable': false, 'aTargets': [-1] }]});
     
-$('#delete_btn').on('click',function(event){
-    $('#delete_Modal').modal('show');
-    event.stopPropagation();
-});
+$('.delete_btn').on('click',function(event){
+        var id = $(this).attr("data-content");
+        $('#delete_Modal'+id).modal('show');
+        event.stopPropagation();
+    });
 
 $('#createbtn').on('click',function(event){
     $('#createModal').modal('show');

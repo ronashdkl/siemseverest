@@ -5,6 +5,7 @@ use yii\grid\GridView;
 use yii\web\View;
 use yii\widgets\ActiveForm;
 use yii\bootstrap\Modal;
+use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\modules\account\models\ExpensesSearch */
@@ -82,7 +83,7 @@ Modal::end();
                                     <span class="tip-content" style="display: none;">View</span>
                                 </li>
                                 <li style="display:inline-block"  >
-                                    <button class="btn btn-danger btn-sm field-tip pointer" id="delete_btn" data-toggle="modal" data-target="#myModalnote<?=$each_data->id?>">
+                                    <button class="btn btn-danger btn-sm field-tip pointer delete_btn"  data-content="<?= $each_data->id?>">
                                         <span class="fa fa-trash-o"></span>
                                     </button>
                                     <span class="tip-content" style="display: none;">Delete</span>
@@ -98,7 +99,7 @@ Modal::end();
                     </tr>
 
                     <!-- delete modal -->
-                    <div class="modal fade" id="delete_Modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                    <div class="modal fade" id="delete_Modal<?=$each_data->id?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -108,11 +109,11 @@ Modal::end();
                                 <div class="modal-body">
                                     <h5>Are you sure you want to delete this file?</h5>
                                     <?php $form=ActiveForm::begin([
-                                        'action' => '../account/expenses/delete-expenses',
+                                        'action' => Url::toRoute('/account/expenses/delete-expenses'),
 
                                     ]);  ?>
                                     <?= Html::input('hidden', 'id',$each_data->id, ['class' => '']) ?>
-                                    <?= Html::submitButton('Yes',['class' => 'btn btn-success',] ) ?>
+                                    <?= Html::submitButton('yes',['class' => 'btn btn-success',] ) ?>
                                     <?php ActiveForm::end(); ?>
                                     <?= Html::submitButton('No', ['class' => 'btn btn-danger','data-dismiss'=>"modal" ]) ?>
                                 </div>
@@ -132,8 +133,10 @@ $script = <<< JS
 $(document).ready(function(){
     $('#expenses_table').DataTable({"aoColumnDefs": [{ 'bSortable': false, 'aTargets': [-1] }]});
     
-$('#delete_btn').on('click',function(event){
-    $('#delete_Modal').modal('show');
+$('.delete_btn').on('click',function(event){
+    var id = $(this).attr("data-content");
+    // alert(id);
+    $('#delete_Modal'+id).modal('show');
     event.stopPropagation();
 });
 
