@@ -61,7 +61,7 @@ $config = [
     ],
     'params' => $params,
 
-    
+
 ];
 
 if (YII_ENV_DEV) {
