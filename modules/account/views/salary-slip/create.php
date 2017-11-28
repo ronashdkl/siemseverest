@@ -4,7 +4,7 @@ use yii\helpers\Html;
 
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Voucher */
+/* @var $model app\models\SalarySlip */
 
 $this->title = 'Create Voucher';
 $this->params['breadcrumbs'][] = ['label' => 'Vouchers', 'url' => ['index']];

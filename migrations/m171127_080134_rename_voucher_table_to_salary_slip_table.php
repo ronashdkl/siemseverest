@@ -12,7 +12,7 @@ class m171127_080134_rename_voucher_table_to_salary_slip_table extends Migration
      */
     public function safeUp()
     {
-        $this->renameTable('voucher','salary_slip');
+        $this->renameTable('salary-slip','salary-slip');
     }
 
     /**

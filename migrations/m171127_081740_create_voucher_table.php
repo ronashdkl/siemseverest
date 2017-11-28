@@ -3,7 +3,7 @@
 use yii\db\Migration;
 
 /**
- * Handles the creation of table `voucher`.
+ * Handles the creation of table `salary-slip`.
  */
 class m171127_081740_create_voucher_table extends Migration
 {
@@ -12,7 +12,7 @@ class m171127_081740_create_voucher_table extends Migration
      */
     public function up()
     {
-        $this->createTable('voucher', [
+        $this->createTable('salary-slip', [
             'id' => $this->primaryKey(),
             'amount' => $this->integer(),
             'date' => $this->dateTime(),
@@ -25,15 +25,15 @@ class m171127_081740_create_voucher_table extends Migration
 
         // creates index for column `accountant`
         $this->createIndex(
-            'idx-voucher-accountant',
-            'voucher',
+            'idx-salary-slip-accountant',
+            'salary-slip',
             'accountant'
         );
 
         // add foreign key for table `employee`
         $this->addForeignKey(
-            'fk-voucher-accountant',
-            'voucher',
+            'fk-salary-slip-accountant',
+            'salary-slip',
             'accountant',
             'employee',
             'user_id',
@@ -42,15 +42,15 @@ class m171127_081740_create_voucher_table extends Migration
 
         // creates index for column `approved_by`
         $this->createIndex(
-            'idx-voucher-approved_by',
-            'voucher',
+            'idx-salary-slip-approved_by',
+            'salary-slip',
             'approved_by'
         );
 
         // add foreign key for table `employee`
         $this->addForeignKey(
-            'fk-voucher-approved_by',
-            'voucher',
+            'fk-salary-slip-approved_by',
+            'salary-slip',
             'approved_by',
             'employee',
             'user_id',
@@ -63,6 +63,6 @@ class m171127_081740_create_voucher_table extends Migration
      */
     public function down()
     {
-        $this->dropTable('voucher');
+        $this->dropTable('salary-slip');
     }
 }

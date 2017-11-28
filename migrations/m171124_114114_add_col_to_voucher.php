@@ -12,7 +12,7 @@ class m171124_114114_add_col_to_voucher extends Migration
      */
     public function safeUp()
     {
-        $this->addColumn('voucher','tax_amount','integer');
+        $this->addColumn('salary-slip','tax_amount','integer');
     }
 
     /**

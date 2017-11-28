@@ -9,8 +9,8 @@ use app\modules\account\models\Employee;
 use app\modules\account\models\Tax;
 use Codeception\PHPUnit\ResultPrinter\HTML;
 use Yii;
-use app\models\Voucher;
-use app\models\search\VoucherSearch as VoucherSearch;
+use app\models\SalarySlip;
+use app\models\search\SalarySlipSearch as SalarySlipSearch;
 use yii\base\ErrorException;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -19,7 +19,7 @@ use yii\filters\VerbFilter;
 /**
  * VoucherController implements the CRUD actions for Voucher model.
  */
-class VoucherController extends Controller
+class SalarySlipController extends Controller
 {
     public $layout ='admin';
     /**
@@ -43,10 +43,10 @@ class VoucherController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new VoucherSearch();
+        $searchModel = new SalarySlipSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-        $data = Voucher::find()->all();
-        $model = new Voucher();
+        $data = SalarySlip::find()->all();
+        $model = new SalarySlip();
         return $this->render('index', [
             'searchModel' => $searchModel,
             'data' => $data,
@@ -73,7 +73,7 @@ class VoucherController extends Controller
      */
     public function actionCreate()
     {
-        $model = new Voucher();
+        $model = new SalarySlip();
         $ref_id = new RefId();
         $bal_model = new Balance();
         $balance = Balance::find()->orderBy(['id' => SORT_DESC])->one();
@@ -162,6 +162,11 @@ class VoucherController extends Controller
             ]);
         }
     }
+    
+    public function actionTax()
+    {
+        return $this->render('tax');
+    }
 
     /**
      * Deletes an existing Voucher model.
@@ -185,7 +190,7 @@ class VoucherController extends Controller
      */
     protected function findModel($id)
     {
-        if (($model = Voucher::findOne($id)) !== null) {
+        if (($model = SalarySlip::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

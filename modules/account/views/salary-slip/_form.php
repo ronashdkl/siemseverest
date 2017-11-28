@@ -8,7 +8,7 @@ use kartik\date\DatePicker;
 use yii\web\View;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Voucher */
+/* @var $model app\models\SalarySlip */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
@@ -106,8 +106,8 @@ use yii\web\View;
 
 <?php
 $script = <<< JS
-$('#voucher-paid_to').on("select2:select", function(e) { 
-    var id = $('#voucher-paid_to').select2('data')[0].id;
+$(salary_slip_to').on("select2:select", function(e) { 
+    var id salary_slippaid_to').select2('data')[0].id;
      $.ajax({
             url: 'receiver-information?id='+id,
             type: 'get',

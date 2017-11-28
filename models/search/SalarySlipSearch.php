@@ -5,12 +5,12 @@ namespace app\models\search;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Voucher as VoucherModel;
+use app\models\SalarySlip as SalarySlipModel;
 
 /**
  * Voucher represents the model behind the search form about `app\models\Voucher`.
  */
-class VoucherSearch extends VoucherModel
+class SalarySlipSearch extends SalarySlipModel
 {
     /**
      * @inheritdoc
@@ -42,7 +42,7 @@ class VoucherSearch extends VoucherModel
      */
     public function search($params)
     {
-        $query = VoucherModel::find();
+        $query = SalarySlipModel::find();
 
         // add conditions that should always apply here
 

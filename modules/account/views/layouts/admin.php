@@ -338,13 +338,13 @@ AdminAsset::register($this);
                             <a href="<?= Url::toRoute('expenses/index')?>"><i class="fa fa-circle-o"></i>Expenses</a>
                         </li>
                         <li class="treeview">
-                            <a href="<?= Url::toRoute('voucher/tax')?>"><i class="fa fa-circle-o"></i>Tax</a>
+                            <a href="<?= Url::toRoute('salary-slip/tax')?>"><i class="fa fa-circle-o"></i>Tax</a>
                         </li>
                         <li class="treeview">
                             <a href="<?= Url::toRoute('withdraw/index')?>"><i class="fa fa-circle-o"></i>Withdraw</a>
                         </li>
                         <li class="treeview">
-                            <a href="<?= Url::toRoute('voucher/index')?>"><i class="fa fa-circle-o"></i>Salary</a>
+                            <a href="<?= Url::toRoute('salary-slip/index')?>"><i class="fa fa-circle-o"></i>Salary</a>
                         </li>
                     </ul>
                 </li>

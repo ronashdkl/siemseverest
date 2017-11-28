@@ -12,8 +12,8 @@ class m171124_133812_modify_voucher_table_col_tax_amount extends Migration
      */
     public function safeUp()
     {
-    $this->dropColumn('voucher','tax_amount');
-    $this->addColumn('voucher','tax_amount','float');
+    $this->dropColumn('salary-slip','tax_amount');
+    $this->addColumn('salary-slip','tax_amount','float');
     }
 
     /**

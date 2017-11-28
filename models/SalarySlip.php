@@ -5,7 +5,7 @@ namespace app\models;
 use Yii;
 
 /**
- * This is the model class for table "voucher".
+ * This is the model class for table "salary-slip".
  *
  * @property integer $id
  * @property string $date
@@ -21,14 +21,14 @@ use Yii;
  * @property User $approvedBy
  * @property User $paidTo
  */
-class Voucher extends \yii\db\ActiveRecord
+class SalarySlip extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc
      */
     public static function tableName()
     {
-        return 'voucher';
+        return 'salary_slip';
     }
 
     /**

@@ -7,10 +7,10 @@ use yii\widgets\ActiveForm;
 use yii\bootstrap\Modal;
 use yii\web\View;
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\search\VoucherSearch */
+/* @var $searchModel app\models\search\SalarySlipSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Vouchers';
+$this->title = 'Salary Slip';
 $counter=1;
 ?>
 
