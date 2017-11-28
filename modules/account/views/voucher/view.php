@@ -11,7 +11,6 @@ $this->params['breadcrumbs'][] = ['label' => 'Vouchers', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="voucher-view">
-
     <div class="row">
 
         <div class="col-sm-12" style="background-color: #fba5a5;">
@@ -75,16 +74,4 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
 
 </div>
-<br/>
-<br/>
-<p>
-    <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-    <?= Html::a('Delete', ['delete', 'id' => $model->id], [
-        'class' => 'btn btn-danger',
-        'data' => [
-            'confirm' => 'Are you sure you want to delete this item?',
-            'method' => 'post',
-        ],
-    ]) ?>
-</p>
 
