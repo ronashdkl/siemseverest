@@ -108,22 +108,23 @@ class IncomeController extends Controller
         $prev_amount = $model->amount;  //getting previous amount
         $balance = Balance::find()->orderBy(['id' => SORT_DESC])->one();
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-                if($model->amount > $prev_amount){
-                    $bal_model->bank_amount = $balance['bank_amount']+($model->amount-$prev_amount);
-                }elseif ($prev_amount > $model->amount){
-                    $bal_model->bank_amount = $balance['bank_amount']-($prev_amount - $model->amount);
-                }else{
-                    $bal_model->bank_amount = $balance["bank_amount"];
-                }
-                $ref_id->id = $model->id;
-                $ref_id->table = Helper::INCOME;
-                $bal_model->ref_id = json_encode($ref_id);
-                $bal_model->cash_amount = $balance['cash_amount'];
-                $bal_model->save();
+            if($model->amount > $prev_amount){
+                $bal_model->bank_amount = $balance['bank_amount']+($model->amount-$prev_amount);
+            }elseif ($prev_amount > $model->amount){
+                $bal_model->bank_amount = $balance['bank_amount']-($prev_amount - $model->amount);
+            }else{
+                $bal_model->bank_amount = $balance["bank_amount"];
+            }
+            $ref_id->id = $model->id;
+            $ref_id->table = Helper::INCOME;
+            $bal_model->ref_id = json_encode($ref_id);
+            $bal_model->cash_amount = $balance['cash_amount'];
+            $bal_model->save();
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
                 'model' => $model,
+                'id' => $id
             ]);
         }
     }
@@ -134,21 +135,26 @@ class IncomeController extends Controller
      * @param integer $id
      * @return mixed
      */
-    public function actionDelete($id)
-    {
-        $this->findModel($id)->delete();
 
-        return $this->redirect(['index']);
-    }
-    
     public function actionDeleteIncome()
     {
         $id=$_POST['id'];
         $model = Income::findOne($id);
         $model->status = 0;
-        $model->save(false);
-        return $this->redirect(['index']);
-        
+       if($model->save(false)) {
+           $ref_id = new RefId();
+           $bal_model = new Balance();
+           $model = $this->findModel($id);
+           $balance = Balance::find()->orderBy(['id' => SORT_DESC])->one();
+           $ref_id->id = $model->id;
+           $ref_id->table = Helper::INCOME;
+           $bal_model->ref_id = json_encode($ref_id);
+           $bal_model->bank_amount = $balance['bank_amount'] - $model->amount;
+           $bal_model->cash_amount = $balance['cash_amount'];
+           $bal_model->save();
+           return $this->redirect(['index']);
+       }
+
     }
 
     /**

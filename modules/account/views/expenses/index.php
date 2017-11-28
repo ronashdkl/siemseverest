@@ -5,6 +5,7 @@ use yii\grid\GridView;
 use yii\web\View;
 use yii\widgets\ActiveForm;
 use yii\bootstrap\Modal;
+use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\modules\account\models\ExpensesSearch */
@@ -116,7 +117,7 @@ Modal::end();
                                 <div class="modal-body">
                                     <h5>Are you sure you want to delete this file?</h5>
                                     <?php $form=ActiveForm::begin([
-                                        'action' => '../account/expenses/delete-expenses',
+                                        'action' => Url::toRoute('delete-expenses'),
 
                                     ]);  ?>
                                     <?= Html::input('hidden', 'id',$each_data->id, ['class' => '']) ?>

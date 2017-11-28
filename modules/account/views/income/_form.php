@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use kartik\date\DatePicker;
 use app\component\Helper;
+use yii\helpers\Url;
 /* @var $this yii\web\View */
 /* @var $model app\modules\account\models\Income */
 /* @var $form yii\widgets\ActiveForm */
@@ -12,7 +13,9 @@ use app\component\Helper;
 <div class="container-fluid">
     <section class="connectedSortable">
         <div class="box-body">
-            <?php $form = ActiveForm::begin(); ?>
+            <?php $form = ActiveForm::begin([
+                    'action' => $model->isNewRecord ? Url::toRoute('/account/income/create') : Url::toRoute('/account/income/update?id='.$id)
+            ]); ?>
 
             <?= $form->field($model, 'source')->textInput(['maxlength' => true]) ?>
 

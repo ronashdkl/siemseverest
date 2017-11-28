@@ -16,7 +16,7 @@ use Yii;
  * @property integer $accountant
  * @property integer $approved_by
  * @property string $information
- *
+ * @property string $tax_amount
  * @property User $accountant0
  * @property User $approvedBy
  * @property User $paidTo

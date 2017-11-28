@@ -33,7 +33,7 @@ use yii\web\View;
                     'allowClear' => true
                 ]
             ]) ?>
-
+            <label id="ajax_amount" class="hidden"></label>
             <?= $form->field($model, 'amount') ?>
 
             <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
@@ -58,7 +58,9 @@ $('#expenses-method').on("select2:select", function(e) {
             url: 'method-validate?id='+method,
             type: 'get',
              success: function (data) {
-              alert(data);
+             $('#ajax_amount').removeClass("hidden");
+             $('#ajax_amount').addClass("visible");
+             $("#ajax_amount").html(data);
            }
 
       });
