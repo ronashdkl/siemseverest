@@ -165,7 +165,19 @@ class SalarySlipController extends Controller
     
     public function actionTax()
     {
-        return $this->render('tax');
+        if(Yii::$app->request->post()){
+            $start_date=$_POST['start_date'];
+            $end_date=$_POST['end_date'];
+            $total_tax = SalarySlip::find()
+                ->where(['between', 'date', $start_date, $end_date ])->sum('tax_amount');
+            return $this->render('tax',['total_tax'=>$total_tax, 'start_date'=>$start_date, 'end_date'=>$end_date]);
+        }else{
+            $date = date('Y-m-d');
+            $total_tax = SalarySlip::find()
+                ->where([ 'date'=> $date ])->sum('tax_amount');
+            return $this->render('tax',['total_tax'=>$total_tax,'start_date'=>$date, 'end_date'=>$date]);
+        }
+
     }
 
     /**
