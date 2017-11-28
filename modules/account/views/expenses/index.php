@@ -67,7 +67,7 @@ Modal::end();
                         <td><?= $each_data->description?></td>
                         <td><?= $each_data->date?></td>
                         <td class="center">
-                            <?php if($each_data->status==1){ ?>
+                            <?php if($each_data->status==1 || $each_data->status==2){ ?>
                                 <span class='label label-success'>Related</span>
                             <?php }else{?>
                                 <span class='label label-warning'>Irrelevent</span>
@@ -93,6 +93,14 @@ Modal::end();
                                     </a>
                                     <span class="tip-content" style="display: none;">Edit</span>
                                 </li>
+                                <?php if($each_data->status!=2){?>
+                                    <li style="display:inline-block"  >
+                                        <a class=" btn btn-primary btn-sm field-tip pointer" href="create-voucher?id=<?= $each_data->id?>">
+                                            <span class="fa fa-list-alt"></span>
+                                        </a>
+                                        <span class="tip-content" style="display: none;">Create Voucher</span>
+                                    </li>
+                                <?php }?>
                             </ul>
                         </td>
                     </tr>

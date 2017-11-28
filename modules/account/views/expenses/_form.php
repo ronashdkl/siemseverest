@@ -37,6 +37,8 @@ use yii\web\View;
             <?= $form->field($model, 'amount') ?>
 
             <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
+            <?= $form->field($model, 'paid_to')->textInput() ?>
+            <?= $form->field($model, 'bill_no')->textInput() ?>
 
             <?= $form->field($model, 'status')->hiddenInput(['value'=>1])->label(false); ?>
             <div class="form-group">

@@ -5,6 +5,7 @@ namespace app\modules\account\controllers;
 use app\component\Helper;
 use app\models\Balance;
 use app\models\RefId;
+use app\modules\account\models\Voucher;
 use Yii;
 use app\modules\account\models\ExpensesSearch;
 use app\modules\account\models\Expenses;
@@ -45,7 +46,7 @@ class ExpensesController extends Controller
         $searchModel = new ExpensesSearch();
         $model = new Expenses();
 //        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-        $data = Expenses::findAll(['status'=> 1]);
+        $data = Expenses::find()->where( ['in', 'status', [1,2]])->all();
 
         return $this->render('index', [
             'searchModel' => $searchModel,
@@ -160,6 +161,33 @@ class ExpensesController extends Controller
         $model->status = 0;
         $model->save(false);
         return $this->redirect(['index']);
+
+    }
+    
+    public function actionCreateVoucher($id)
+    {
+        $expenses = Expenses::findOne($id);
+        $model = new Voucher();
+        $model->paid_to = $expenses->paid_to;
+        $model->amount = $expenses->amount;
+        $model->date = $expenses->date;
+        $model->information = $expenses->description;
+        $model->account_of = "ram";
+        if ($model->load(Yii::$app->request->post())) {
+            
+            //var_dump($model);exit();
+            if($model->save() && $model->validate()){
+                $expenses->status=2;
+                $expenses->save(false);
+                return $this->render('voucher_slip', ['model' => $model]);
+            }
+            return $this->redirect(['index']);
+        }else{
+            return $this->render('voucher',[
+                'model' => $model,
+                'id' => $id
+            ]);
+        }
 
     }
     

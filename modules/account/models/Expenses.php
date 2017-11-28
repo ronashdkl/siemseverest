@@ -32,7 +32,7 @@ class Expenses extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['title','amount','date','method'],'required'],
+            [['title','amount','date','method','paid_to'],'required'],
             [['amount', 'status'], 'integer'],
             // validates if age is greater than or equal to 30
             ['amount', 'validateAmount', 'when' => function($model){
@@ -43,7 +43,7 @@ class Expenses extends \yii\db\ActiveRecord
             }
             }],
             [['date'], 'safe'],
-            [['description','method'], 'string'],
+            [['description','method','paid_to','bill_no'], 'string'],
             [['title'],'match','pattern'=>'/^[a-z]\w*$/i'],
         ];
     }
@@ -59,6 +59,8 @@ class Expenses extends \yii\db\ActiveRecord
             'amount' => 'Amount',
             'date' => 'Date',
             'description' => 'Description',
+            'paid_to' => 'Paid To',
+            'bill_no' => 'Bill No',
             'status' => 'Status',
         ];
     }
