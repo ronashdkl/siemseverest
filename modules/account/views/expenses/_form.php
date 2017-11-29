@@ -24,6 +24,7 @@ use yii\web\View;
                     'enableAjaxValidation' => true]); ?>
             <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
 
+
             <?= $form->field($model, 'method')->widget(Select2::classname(), [
                 'data' => Helper::METHOD,
                 'language' => 'en',
@@ -36,6 +37,14 @@ use yii\web\View;
             <label id="ajax_amount" class="hidden"></label>
             <?= $form->field($model, 'amount') ?>
 
+            <?= $form->field($model, 'date')->widget(DatePicker::classname(), [
+                'options' => ['placeholder' => 'Enter date ...'],
+                'pluginOptions' => [
+                    'autoclose'=>true,
+                    'format' => 'yyyy-m-dd'
+                ]
+            ]);
+            ?>
             <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
             <?= $form->field($model, 'paid_to')->textInput() ?>
             <?= $form->field($model, 'bill_no')->textInput() ?>
@@ -54,6 +63,7 @@ use yii\web\View;
 $script = <<< JS
 $('#expenses-method').on("select2:select", function(e) { 
     var method = $('#expenses-method').val();
+    var str_tot_amount = "Total amount: ";
      $.ajax({
             url: 'method-validate?id='+method,
             type: 'get',
