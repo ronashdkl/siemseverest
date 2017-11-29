@@ -14,6 +14,9 @@ $config = [
         'account' => [
             'class' => 'app\modules\account\Account',
         ],
+        'employee' => [
+            'class' => 'app\modules\employee\Employee',
+        ],
     ],
     'components' => [
         'request' => [

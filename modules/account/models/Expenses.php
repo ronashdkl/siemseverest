@@ -16,6 +16,8 @@ use Yii;
  * @property string $description
  * @property integer $status
  * @property integer $paid_to
+ * @property integer $method
+
  */
 class Expenses extends \yii\db\ActiveRecord
 {
@@ -33,7 +35,7 @@ class Expenses extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['title','amount','date','method','paid_to'],'required'],
+            [['title','amount','date','expense_method','paid_to'],'required'],
             [['amount', 'status'], 'integer'],
             // validates if age is greater than or equal to 30
             ['amount', 'validateAmount', 'when' => function($model){

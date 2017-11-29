@@ -14,7 +14,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="col-md-6">
         <div class="employee-view">
 
-            <h1><?= Html::encode(ucfirst($model->user->username)) ?></h1>
+            <h1><?= Html::encode(ucfirst($model->first_name." ".$model->last_name)) ?></h1>
 
             <p>
                 <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
