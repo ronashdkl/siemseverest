@@ -15,6 +15,7 @@ use Yii;
  * @property string $date
  * @property string $description
  * @property integer $status
+ * @property integer $paid_to
  */
 class Expenses extends \yii\db\ActiveRecord
 {

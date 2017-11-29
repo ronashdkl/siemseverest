@@ -8,6 +8,7 @@ use app\models\RefId;
 use Yii;
 use app\modules\account\models\ExpensesSearch;
 use app\modules\account\models\Expenses;
+use app\modules\account\models\Voucher;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -45,8 +46,8 @@ class ExpensesController extends Controller
         $searchModel = new ExpensesSearch();
         $model = new Expenses();
 //        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-        $data = Expenses::findAll(['status'=> 1]);
-
+        $data = Expenses::find()->where(['in','status',[1,2]])->all();
+       // var_dump($data);exit;
         return $this->render('index', [
             'searchModel' => $searchModel,
             'data' => $data,
@@ -102,6 +103,32 @@ class ExpensesController extends Controller
                 'model' => $model,
             ]);
         }
+    }
+
+    public function actionCreateVoucher($id)
+    {
+        $expenses = Expenses::findOne($id);
+        $model = new Voucher();
+        $model->paid_to = $expenses->paid_to;
+        $model->amount = $expenses->amount;
+        $model->date = $expenses->date;
+        $model->information = $expenses->description;
+        if ($model->load(Yii::$app->request->post())) {
+
+            //var_dump($model);exit();
+            if($model->save() && $model->validate()){
+                $expenses->status=2;
+                $expenses->save(false);
+                return $this->render('voucher_slip', ['model' => $model]);
+            }
+            return $this->redirect(['index']);
+        }else{
+            return $this->render('voucher',[
+                'model' => $model,
+                'id' => $id
+            ]);
+        }
+
     }
 
     /**
