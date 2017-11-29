@@ -12,7 +12,7 @@ class m171127_081740_create_voucher_table extends Migration
      */
     public function up()
     {
-        $this->createTable('salary-slip', [
+        $this->createTable('voucher', [
             'id' => $this->primaryKey(),
             'amount' => $this->integer(),
             'date' => $this->dateTime(),
@@ -25,15 +25,15 @@ class m171127_081740_create_voucher_table extends Migration
 
         // creates index for column `accountant`
         $this->createIndex(
-            'idx-salary-slip-accountant',
-            'salary-slip',
+            'idx-voucher-accountant',
+            'voucher',
             'accountant'
         );
 
         // add foreign key for table `employee`
         $this->addForeignKey(
-            'fk-salary-slip-accountant',
-            'salary-slip',
+            'fk-voucher-accountant',
+            'voucher',
             'accountant',
             'employee',
             'user_id',
@@ -42,15 +42,15 @@ class m171127_081740_create_voucher_table extends Migration
 
         // creates index for column `approved_by`
         $this->createIndex(
-            'idx-salary-slip-approved_by',
-            'salary-slip',
+            'idx-voucher-approved_by',
+            'voucher',
             'approved_by'
         );
 
         // add foreign key for table `employee`
         $this->addForeignKey(
-            'fk-salary-slip-approved_by',
-            'salary-slip',
+            'fk-voucher-approved_by',
+            'voucher',
             'approved_by',
             'employee',
             'user_id',
@@ -63,6 +63,6 @@ class m171127_081740_create_voucher_table extends Migration
      */
     public function down()
     {
-        $this->dropTable('salary-slip');
+        $this->dropTable('voucher');
     }
 }

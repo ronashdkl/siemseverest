@@ -62,9 +62,18 @@ class ExpensesController extends Controller
      */
     public function actionView($id)
     {
-        return $this->render('view', [
-            'model' => $this->findModel($id),
-        ]);
+        $expenses=$this->findModel($id);
+        if($expenses->voucher_id!=null){
+            $model= Voucher::findOne($expenses->voucher_id);
+            return $this->render('voucher_slip', [
+                'model' => $model,
+            ]);
+        }else{
+            return $this->render('view', [
+                'model' => $expenses,
+            ]);
+        }
+
     }
 
     /**
@@ -74,6 +83,7 @@ class ExpensesController extends Controller
      */
     public function actionCreate()
     {
+        var_dump(1);exit;
         $model = new Expenses();
         $ref_id = new RefId();
         $bal_model = new Balance();
@@ -118,6 +128,7 @@ class ExpensesController extends Controller
             //var_dump($model);exit();
             if($model->save() && $model->validate()){
                 $expenses->status=2;
+                $expenses->voucher_id=$model->id;
                 $expenses->save(false);
                 return $this->render('voucher_slip', ['model' => $model]);
             }
