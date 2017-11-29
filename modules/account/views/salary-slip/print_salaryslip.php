@@ -6,12 +6,22 @@
  * Time: 13:56
  */
 ?>
+<style>
+    table, th, td {
+        border: 1px solid black;
+        min-width: 200px;
+        min-height: 200px;
+    }
+    tr{
+        min-width:200px:200px;
+    }
+</style>
 <table>
     <tbody>
-    <tr>
+    <tr style="min-width: 200px; ">
         <td style="min-width: 200px; min-height: 150px;"><h5><b>SIEMS EVEREST CONSULTANCY</b><h2></td>
-        <td ><h2>SALARY SLIP</h2></td>
-        <td><h5>Changunarayan-2,Bhaktapur,Nepal</h5></td>
+        <td style="min-width: 150px; min-height: 150px;"><h2>SALARY SLIP</h2></td>
+        <td  style="min-width: 150px; min-height: 150px;"><h5>Changunarayan-2,Bhaktapur,Nepal</h5></td>
     </tr>
     <tr>
         <td></td>
@@ -20,7 +30,7 @@
 
     </tr>
     <tr>
-        <td >Employee Name : </td>
+        <td style="min-width: 200px; ">Employee Name : </td>
         <td >Mukesh Pandey </td>
     </tr>
     <tr>

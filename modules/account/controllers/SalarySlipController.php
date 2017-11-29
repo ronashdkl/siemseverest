@@ -62,7 +62,7 @@ class SalarySlipController extends Controller
      */
     public function actionView($id)
     {
-        return $this->render('view', [
+        return $this->render('print_salaryslip', [
             'model' => $this->findModel($id),
         ]);
     }
@@ -163,15 +163,20 @@ class SalarySlipController extends Controller
             ]);
         }
     }
-    
+    //provides total tax and tax of each months
     public function actionTax()
     {
         if(Yii::$app->request->post()){
             $start_date=$_POST['start_date'];
             $end_date=$_POST['end_date'];
-            $total_tax = SalarySlip::find()
+            $connection = Yii::$app->getDb();
+            $command = $connection->createCommand("SELECT date,sum(tax_amount) as tax_amount,paid_to
+                        FROM salary_slip
+                        GROUP BY YEAR(date), MONTH(date)");
+            $salary_slips = $command->queryAll();
+            $total_tax =SalarySlip::find()
                 ->where(['between', 'date', $start_date, $end_date ])->sum('tax_amount');
-            return $this->render('tax',['total_tax'=>$total_tax, 'start_date'=>$start_date, 'end_date'=>$end_date]);
+            return $this->render('tax',['total_tax'=>$total_tax,'salary_slips'=>$salary_slips,'start_date'=>$start_date, 'end_date'=>$end_date]);
         }else{
             $date = date('Y-m-d');
             $total_tax = SalarySlip::find()
@@ -181,6 +186,12 @@ class SalarySlipController extends Controller
 
     }
 
+    //provides tax details of each months
+    public function actionTaxDetails(){
+        $date = date_parse_from_format("Y-m-d", @$_GET['d']);
+        $salary_slips = SalarySlip::findAll(['YEAR(date)'=>$date["year"],'MONTH(date)'=>$date["month"]]);
+        return $this->render('tax_details',['salary_slips'=>$salary_slips]);
+    }
     /**
      * Deletes an existing Voucher model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
