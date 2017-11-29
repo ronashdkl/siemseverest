@@ -62,7 +62,7 @@ class SalarySlipController extends Controller
      */
     public function actionView($id)
     {
-        return $this->render('print_salaryslip', [
+        return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
     }
@@ -220,10 +220,10 @@ class SalarySlipController extends Controller
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
-    public function actionReport(){
-
+    public function actionReport($id){
+        $model= $this->findModel($id);
         // get your HTML raw content without any layouts or scripts
-        $content = $this->renderPartial('print_salaryslip');
+        $content = $this->renderPartial('print_salaryslip',['model'=>$model]);
 
         // setup kartik\mpdf\Pdf component
         $pdf = new Pdf([
@@ -246,7 +246,7 @@ class SalarySlipController extends Controller
             'options' => ['title' => 'Krajee Report Title'],
             // call mPDF methods on the fly
             'methods' => [
-                'SetHeader'=>['Krajee Report Header'],
+                'SetHeader'=>['SIEMS PAYSLIP'],
                 'SetFooter'=>['{PAGENO}'],
             ]
         ]);

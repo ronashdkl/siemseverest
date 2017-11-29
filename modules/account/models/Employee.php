@@ -79,4 +79,7 @@ class Employee extends \yii\db\ActiveRecord
     public function getfullName(){
         return $this->first_name.' '.$this->last_name;
     }
+    public function getJobPost(){
+        return $this->job_post;
+    }
 }
