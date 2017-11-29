@@ -34,7 +34,7 @@ class Expenses extends \yii\db\ActiveRecord
     {
         return [
             [['title','amount','date','method','paid_to'],'required'],
-            [['amount', 'status'], 'integer'],
+            [['amount', 'status','voucher_id'], 'integer'],
             // validates if age is greater than or equal to 30
             ['amount', 'validateAmount', 'when' => function($model){
             if($model->method !=""){
@@ -46,6 +46,7 @@ class Expenses extends \yii\db\ActiveRecord
             [['date'], 'safe'],
             [['description','method','paid_to','bill_no'], 'string'],
             [['title'],'match','pattern'=>'/^[a-z]\w*$/i'],
+            [['voucher_id'], 'exist', 'skipOnError' => true, 'targetClass' => Voucher::className(), 'targetAttribute' => ['voucher_id' => 'id']]
         ];
     }
 
@@ -65,12 +66,12 @@ class Expenses extends \yii\db\ActiveRecord
             'status' => 'Status',
         ];
     }
-public function validateTitle($attribute,$params,$validator){
-        $title = $this->title;
-        if(! preg_match([A-Za-z],$title)){
-            $this->addError('title',"Title must be attribute");
-        }
-}
+    public function validateTitle($attribute,$params,$validator){
+            $title = $this->title;
+            if(! preg_match([A-Za-z],$title)){
+                $this->addError('title',"Title must be attribute");
+            }
+    }
     public function validateAmount($attribute,$params,$validator)
     {
         $balance = Balance::find()->orderBy(['id' => SORT_DESC])->one();
@@ -82,5 +83,14 @@ public function validateTitle($attribute,$params,$validator){
             if($this->amount > $balance['bank_amount'])
                 $this->addError('amount',"Expense must be less than Bank amount");
         }
+    }
+
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getVoucherId()
+    {
+        return $this->hasOne(Voucher::className(), ['id' => 'voucher_id']);
     }
 }
