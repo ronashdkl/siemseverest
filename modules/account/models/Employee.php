@@ -38,10 +38,11 @@ class Employee extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['user_id', 'first_name', 'last_name', 'address', 'contact', 'job_type', 'job_post', 'sallery', 'citizenship_number', 'image', 'status'], 'required'],
+            [['first_name', 'last_name', 'address', 'contact', 'job_type', 'job_post', 'sallery', 'citizenship_number', 'image', 'status'], 'required'],
             [['user_id', 'status'], 'integer'],
             [['sallery'], 'number'],
             [['image'], 'string'],
+            [['image'], 'safe'],
             [['first_name', 'last_name'], 'string', 'max' => 100],
             [['address', 'job_type', 'job_post', 'citizenship_number'], 'string', 'max' => 200],
             [['contact'], 'string', 'max' => 20],

@@ -35,7 +35,9 @@ class ComposerStaticInitc22a6a76a7e576c519fe0104bbd8dbd7
         'k' => 
         array (
             'kartik\\select2\\' => 15,
+            'kartik\\plugins\\fileinput\\' => 25,
             'kartik\\mpdf\\' => 12,
+            'kartik\\file\\' => 12,
             'kartik\\date\\' => 12,
             'kartik\\base\\' => 12,
         ),
@@ -137,9 +139,17 @@ class ComposerStaticInitc22a6a76a7e576c519fe0104bbd8dbd7
         array (
             0 => __DIR__ . '/..' . '/kartik-v/yii2-widget-select2',
         ),
+        'kartik\\plugins\\fileinput\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/kartik-v/bootstrap-fileinput',
+        ),
         'kartik\\mpdf\\' => 
         array (
             0 => __DIR__ . '/..' . '/kartik-v/yii2-mpdf',
+        ),
+        'kartik\\file\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/kartik-v/yii2-widget-fileinput',
         ),
         'kartik\\date\\' => 
         array (

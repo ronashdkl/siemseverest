@@ -3,19 +3,17 @@
 namespace app\modules\employee\controllers;
 
 use Yii;
-use app\modules\account\models\Employee;
-use yii\data\ActiveDataProvider;
+use app\modules\employee\models\Jobpost;
+use app\modules\employee\models\JobpostSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use yii\web\UploadedFile;
 
 /**
- * EmployeeManagementController implements the CRUD actions for Employee model.
+ * JobpostController implements the CRUD actions for Jobpost model.
  */
-class EmployeemanageController extends Controller
+class JobpostController extends Controller
 {
-    public $layout = "@app/modules/account/views/layouts/admin";
     /**
      * @inheritdoc
      */
@@ -32,22 +30,22 @@ class EmployeemanageController extends Controller
     }
 
     /**
-     * Lists all Employee models.
+     * Lists all Jobpost models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $dataProvider = new ActiveDataProvider([
-            'query' => Employee::find(),
-        ]);
+        $searchModel = new JobpostSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
+            'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
     }
 
     /**
-     * Displays a single Employee model.
+     * Displays a single Jobpost model.
      * @param integer $id
      * @return mixed
      */
@@ -59,21 +57,15 @@ class EmployeemanageController extends Controller
     }
 
     /**
-     * Creates a new Employee model.
+     * Creates a new Jobpost model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Employee();
+        $model = new Jobpost();
 
-        if ($model->load(Yii::$app->request->post())) {
-            $file = UploadedFile::getInstance($model, 'image');
-            $model->image = 'web/uploads/' . $file->baseName . '.' . $file->extension;
-            if( $model->save()){
-                $file->saveAs('uploads/' . $file->baseName . '.' . $file->extension);
-            }
-
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
@@ -83,7 +75,7 @@ class EmployeemanageController extends Controller
     }
 
     /**
-     * Updates an existing Employee model.
+     * Updates an existing Jobpost model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -102,7 +94,7 @@ class EmployeemanageController extends Controller
     }
 
     /**
-     * Deletes an existing Employee model.
+     * Deletes an existing Jobpost model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -115,15 +107,15 @@ class EmployeemanageController extends Controller
     }
 
     /**
-     * Finds the Employee model based on its primary key value.
+     * Finds the Jobpost model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Employee the loaded model
+     * @return Jobpost the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Employee::findOne($id)) !== null) {
+        if (($model = Jobpost::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
