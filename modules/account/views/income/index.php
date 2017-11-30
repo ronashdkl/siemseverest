@@ -67,7 +67,7 @@ Modal::end();
                         <td><?= $each_data->source?></td>
                         <td><?= $each_data->received_by?></td>
                         <td><?= $each_data->description?></td>
-                        <td><?= $each_data->date?></td>>
+                        <td><?= $each_data->date?></td>
                         <td>
                             <ul class="list-unstyled">
                                 <li style="display:inline-block">
