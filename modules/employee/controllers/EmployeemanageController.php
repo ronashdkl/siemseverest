@@ -2,6 +2,7 @@
 
 namespace app\modules\employee\controllers;
 
+use dektrium\user\models\User;
 use Yii;
 use app\modules\account\models\Employee;
 use yii\data\ActiveDataProvider;
@@ -72,6 +73,13 @@ class EmployeemanageController extends Controller
             $model->image = 'web/uploads/' . $file->baseName . '.' . $file->extension;
             if( $model->save()){
                 $file->saveAs('uploads/' . $file->baseName . '.' . $file->extension);
+                $user = new User();
+                $user->setAttribute([
+                    'username'=>"binay",
+                    'email'=>"thapa.binay123@gmial.com",
+                    'password'=>"123"
+                ]);
+                $user->save();
             }
 
             return $this->redirect(['view', 'id' => $model->id]);
