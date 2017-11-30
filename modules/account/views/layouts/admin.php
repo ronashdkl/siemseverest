@@ -355,17 +355,7 @@ AdminAsset::register($this);
                     </a>
                     <ul class="treeview-menu">
                         <li class="treeview">
-                            <a href="#"><i class="fa fa-circle-o"></i> Level One
-                                <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
-                            </a>
-                            <ul class="treeview-menu">
-                                <li><a href="<?= Url::toRoute('income/index')?>"><i class="fa fa-circle-o"></i> Level Two</a></li>
-                                <li class="treeview">
-                                    <a href="<?= Url::toRoute('income/index')?>"><i class="fa fa-circle-o"></i> Level Two
-                                        <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
-                                    </a>
-                                </li>
-                            </ul>
+                            <a href="<?= Url::toRoute('/employee/employeemanage/index')?>"><i class="fa fa-circle-o"></i>Employee Records</a>
                         </li>
                     </ul>
                 </li>
