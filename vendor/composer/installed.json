@@ -3231,224 +3231,6 @@
         ]
     },
     {
-        "name": "yiisoft/yii2-httpclient",
-        "version": "2.0.5",
-        "version_normalized": "2.0.5.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/yiisoft/yii2-httpclient.git",
-            "reference": "0417cb05f810890297f79877ccf51865834fb394"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/yiisoft/yii2-httpclient/zipball/0417cb05f810890297f79877ccf51865834fb394",
-            "reference": "0417cb05f810890297f79877ccf51865834fb394",
-            "shasum": ""
-        },
-        "require": {
-            "yiisoft/yii2": "~2.0.13"
-        },
-        "time": "2017-11-03T11:22:03+00:00",
-        "type": "yii2-extension",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "2.0.x-dev"
-            }
-        },
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "yii\\httpclient\\": ""
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "BSD-3-Clause"
-        ],
-        "authors": [
-            {
-                "name": "Paul Klimov",
-                "email": "klimov.paul@gmail.com"
-            }
-        ],
-        "description": "HTTP client extension for the Yii framework",
-        "keywords": [
-            "curl",
-            "http",
-            "httpclient",
-            "yii2"
-        ]
-    },
-    {
-        "name": "yiisoft/yii2-authclient",
-        "version": "2.1.4",
-        "version_normalized": "2.1.4.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/yiisoft/yii2-authclient.git",
-            "reference": "22463dbfd4a53b16fec9b6286e762e31d3fdeee0"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/yiisoft/yii2-authclient/zipball/22463dbfd4a53b16fec9b6286e762e31d3fdeee0",
-            "reference": "22463dbfd4a53b16fec9b6286e762e31d3fdeee0",
-            "shasum": ""
-        },
-        "require": {
-            "yiisoft/yii2-httpclient": "~2.0.5"
-        },
-        "suggest": {
-            "spomky-labs/jose": "required for JWS,JWT or JWK related flows like OpenIDConnect"
-        },
-        "time": "2017-11-03T12:32:29+00:00",
-        "type": "yii2-extension",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "2.0.x-dev"
-            }
-        },
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "yii\\authclient\\": ""
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "BSD-3-Clause"
-        ],
-        "authors": [
-            {
-                "name": "Paul Klimov",
-                "email": "klimov.paul@gmail.com"
-            }
-        ],
-        "description": "External authentication via OAuth and OpenID for the Yii framework",
-        "keywords": [
-            "OpenID Connect",
-            "OpenId",
-            "api",
-            "auth",
-            "oauth",
-            "yii2"
-        ]
-    },
-    {
-        "name": "dektrium/yii2-user",
-        "version": "0.9.12",
-        "version_normalized": "0.9.12.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/dektrium/yii2-user.git",
-            "reference": "26a4de66045fe9b9736a269d399cf5b15cfffe8b"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/dektrium/yii2-user/zipball/26a4de66045fe9b9736a269d399cf5b15cfffe8b",
-            "reference": "26a4de66045fe9b9736a269d399cf5b15cfffe8b",
-            "shasum": ""
-        },
-        "require": {
-            "yiisoft/yii2": "^2.0.0",
-            "yiisoft/yii2-authclient": "^2.1.0",
-            "yiisoft/yii2-bootstrap": "^2.0.0",
-            "yiisoft/yii2-swiftmailer": "^2.0.0"
-        },
-        "require-dev": {
-            "codeception/specify": "^0.4.3",
-            "codeception/verify": "^0.3.1",
-            "yiisoft/yii2-codeception": "^2.0.0"
-        },
-        "time": "2017-01-11T20:26:20+00:00",
-        "type": "yii2-extension",
-        "extra": {
-            "bootstrap": "dektrium\\user\\Bootstrap",
-            "branch-alias": {
-                "dev-master": "0.9.x-dev",
-                "dev-develop": "1.0.x-dev"
-            }
-        },
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "dektrium\\user\\": ""
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Dmitry Erofeev",
-                "email": "dmeroff@gmail.com",
-                "homepage": "http://dmeroff.ru"
-            }
-        ],
-        "description": "Flexible user registration and authentication module for Yii2",
-        "keywords": [
-            "User management",
-            "dektrium",
-            "yii2",
-            "yii2-user"
-        ]
-    },
-    {
-        "name": "dektrium/yii2-rbac",
-        "version": "1.0.0-alpha",
-        "version_normalized": "1.0.0.0-alpha",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/dektrium/yii2-rbac.git",
-            "reference": "0943e66c450132b306584a37caefc2aa04258372"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/dektrium/yii2-rbac/zipball/0943e66c450132b306584a37caefc2aa04258372",
-            "reference": "0943e66c450132b306584a37caefc2aa04258372",
-            "shasum": ""
-        },
-        "require": {
-            "kartik-v/yii2-widget-select2": "^2.0",
-            "yiisoft/yii2": "^2.0.8"
-        },
-        "time": "2016-08-15T15:49:54+00:00",
-        "type": "yii2-extension",
-        "extra": {
-            "bootstrap": "dektrium\\rbac\\Bootstrap",
-            "branch-alias": {
-                "dev-master": "1.0.x-dev"
-            }
-        },
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "dektrium\\rbac\\": ""
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Dmitry Erofeev",
-                "email": "dmeroff@gmail.com",
-                "homepage": "http://dmeroff.ru"
-            }
-        ],
-        "description": "RBAC management module for Yii2",
-        "keywords": [
-            "dektrium",
-            "rbac gui",
-            "rbac management",
-            "rbac module",
-            "yii rbac",
-            "yii2",
-            "yii2-rbac"
-        ]
-    },
-    {
         "name": "kartik-v/yii2-widget-datepicker",
         "version": "dev-master",
         "version_normalized": "9999999-dev",
@@ -4056,6 +3838,224 @@
             "mock",
             "spy",
             "stub"
+        ]
+    },
+    {
+        "name": "yiisoft/yii2-httpclient",
+        "version": "2.0.5",
+        "version_normalized": "2.0.5.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/yiisoft/yii2-httpclient.git",
+            "reference": "0417cb05f810890297f79877ccf51865834fb394"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/yiisoft/yii2-httpclient/zipball/0417cb05f810890297f79877ccf51865834fb394",
+            "reference": "0417cb05f810890297f79877ccf51865834fb394",
+            "shasum": ""
+        },
+        "require": {
+            "yiisoft/yii2": "~2.0.13"
+        },
+        "time": "2017-11-03T11:22:03+00:00",
+        "type": "yii2-extension",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "2.0.x-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "yii\\httpclient\\": ""
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "BSD-3-Clause"
+        ],
+        "authors": [
+            {
+                "name": "Paul Klimov",
+                "email": "klimov.paul@gmail.com"
+            }
+        ],
+        "description": "HTTP client extension for the Yii framework",
+        "keywords": [
+            "curl",
+            "http",
+            "httpclient",
+            "yii2"
+        ]
+    },
+    {
+        "name": "yiisoft/yii2-authclient",
+        "version": "2.1.4",
+        "version_normalized": "2.1.4.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/yiisoft/yii2-authclient.git",
+            "reference": "22463dbfd4a53b16fec9b6286e762e31d3fdeee0"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/yiisoft/yii2-authclient/zipball/22463dbfd4a53b16fec9b6286e762e31d3fdeee0",
+            "reference": "22463dbfd4a53b16fec9b6286e762e31d3fdeee0",
+            "shasum": ""
+        },
+        "require": {
+            "yiisoft/yii2-httpclient": "~2.0.5"
+        },
+        "suggest": {
+            "spomky-labs/jose": "required for JWS,JWT or JWK related flows like OpenIDConnect"
+        },
+        "time": "2017-11-03T12:32:29+00:00",
+        "type": "yii2-extension",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "2.0.x-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "yii\\authclient\\": ""
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "BSD-3-Clause"
+        ],
+        "authors": [
+            {
+                "name": "Paul Klimov",
+                "email": "klimov.paul@gmail.com"
+            }
+        ],
+        "description": "External authentication via OAuth and OpenID for the Yii framework",
+        "keywords": [
+            "OpenID Connect",
+            "OpenId",
+            "api",
+            "auth",
+            "oauth",
+            "yii2"
+        ]
+    },
+    {
+        "name": "dektrium/yii2-user",
+        "version": "0.9.12",
+        "version_normalized": "0.9.12.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/dektrium/yii2-user.git",
+            "reference": "26a4de66045fe9b9736a269d399cf5b15cfffe8b"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/dektrium/yii2-user/zipball/26a4de66045fe9b9736a269d399cf5b15cfffe8b",
+            "reference": "26a4de66045fe9b9736a269d399cf5b15cfffe8b",
+            "shasum": ""
+        },
+        "require": {
+            "yiisoft/yii2": "^2.0.0",
+            "yiisoft/yii2-authclient": "^2.1.0",
+            "yiisoft/yii2-bootstrap": "^2.0.0",
+            "yiisoft/yii2-swiftmailer": "^2.0.0"
+        },
+        "require-dev": {
+            "codeception/specify": "^0.4.3",
+            "codeception/verify": "^0.3.1",
+            "yiisoft/yii2-codeception": "^2.0.0"
+        },
+        "time": "2017-01-11T20:26:20+00:00",
+        "type": "yii2-extension",
+        "extra": {
+            "bootstrap": "dektrium\\user\\Bootstrap",
+            "branch-alias": {
+                "dev-master": "0.9.x-dev",
+                "dev-develop": "1.0.x-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "dektrium\\user\\": ""
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Dmitry Erofeev",
+                "email": "dmeroff@gmail.com",
+                "homepage": "http://dmeroff.ru"
+            }
+        ],
+        "description": "Flexible user registration and authentication module for Yii2",
+        "keywords": [
+            "User management",
+            "dektrium",
+            "yii2",
+            "yii2-user"
+        ]
+    },
+    {
+        "name": "dektrium/yii2-rbac",
+        "version": "1.0.0-alpha",
+        "version_normalized": "1.0.0.0-alpha",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/dektrium/yii2-rbac.git",
+            "reference": "0943e66c450132b306584a37caefc2aa04258372"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/dektrium/yii2-rbac/zipball/0943e66c450132b306584a37caefc2aa04258372",
+            "reference": "0943e66c450132b306584a37caefc2aa04258372",
+            "shasum": ""
+        },
+        "require": {
+            "kartik-v/yii2-widget-select2": "^2.0",
+            "yiisoft/yii2": "^2.0.8"
+        },
+        "time": "2016-08-15T15:49:54+00:00",
+        "type": "yii2-extension",
+        "extra": {
+            "bootstrap": "dektrium\\rbac\\Bootstrap",
+            "branch-alias": {
+                "dev-master": "1.0.x-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "dektrium\\rbac\\": ""
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Dmitry Erofeev",
+                "email": "dmeroff@gmail.com",
+                "homepage": "http://dmeroff.ru"
+            }
+        ],
+        "description": "RBAC management module for Yii2",
+        "keywords": [
+            "dektrium",
+            "rbac gui",
+            "rbac management",
+            "rbac module",
+            "yii rbac",
+            "yii2",
+            "yii2-rbac"
         ]
     }
 ]
