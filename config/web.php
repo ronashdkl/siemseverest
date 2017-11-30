@@ -9,7 +9,7 @@ $config = [
     'bootstrap' => ['log'],
     'modules'=>[
         'rbac' => [
-            'class' => 'yii2mod\rbac\Module',
+            'class' => 'dektrium\rbac\RbacWebModule',
         ],
         'user' => [
             'class' => 'dektrium\user\Module',
@@ -56,7 +56,7 @@ $config = [
             ],
         ],
         'authManager' => [
-            'class' => 'yii\rbac\DbManager',
+            'class' => 'dektrium\rbac\components\DbManager',
             'defaultRoles' => ['guest', 'user'],
         ],
         'request' => [
