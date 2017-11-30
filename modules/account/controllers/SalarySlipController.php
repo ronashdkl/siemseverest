@@ -8,6 +8,7 @@ use app\component\Helper;
 use app\modules\account\models\Employee;
 use app\modules\account\models\Tax;
 use Codeception\PHPUnit\ResultPrinter\HTML;
+use function GuzzleHttp\Psr7\copy_to_string;
 use Yii;
 use app\models\SalarySlip;
 use app\models\search\SalarySlipSearch as SalarySlipSearch;
@@ -167,21 +168,25 @@ class SalarySlipController extends Controller
     public function actionTax()
     {
         if(Yii::$app->request->post()){
-            $start_date=$_POST['start_date'];
-            $end_date=$_POST['end_date'];
-            $connection = Yii::$app->getDb();
-            $command = $connection->createCommand("SELECT date,sum(tax_amount) as tax_amount,paid_to
-                        FROM salary_slip
-                        GROUP BY YEAR(date), MONTH(date)");
-            $salary_slips = $command->queryAll();
+            $start_date= @$_POST['start_date'];
+            $end_date= @$_POST['end_date'];
+            $salary_slips = SalarySlip::find()->select(['date','paid_to', 'tax_amount'=>'SUM(tax_amount)'])
+                ->where(['BETWEEN', 'date' ,$start_date,$end_date])
+                ->groupBy(['YEAR(date)','MONTH(date)' ])->all();
             $total_tax =SalarySlip::find()
                 ->where(['between', 'date', $start_date, $end_date ])->sum('tax_amount');
             return $this->render('tax',['total_tax'=>$total_tax,'salary_slips'=>$salary_slips,'start_date'=>$start_date, 'end_date'=>$end_date]);
         }else{
             $date = date('Y-m-d');
+            $connection = Yii::$app->getDb();
+            $total_tax =SalarySlip::find()
+                ->where(['between', 'date', $date, $date ])->sum('tax_amount');
             $total_tax = SalarySlip::find()
                 ->where([ 'date'=> $date ])->sum('tax_amount');
-            return $this->render('tax',['total_tax'=>$total_tax,'start_date'=>$date, 'end_date'=>$date]);
+            $salary_slips = SalarySlip::find()->select(['date','paid_to', 'tax_amount'=>'SUM(tax_amount)'])
+                ->where(['BETWEEN', 'date' ,$date,$date])
+                ->groupBy(['YEAR(date)','MONTH(date)' ])->all();
+            return $this->render('tax',['total_tax'=>$total_tax,'salary_slips'=>$salary_slips,'start_date'=>$date,'end_date'=>$date]);
         }
 
     }

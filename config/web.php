@@ -8,8 +8,12 @@ $config = [
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'modules'=>[
+        'rbac' => [
+            'class' => 'yii2mod\rbac\Module',
+        ],
         'user' => [
             'class' => 'dektrium\user\Module',
+            'admins' => ['thapa.binay111']
         ],
         'account' => [
             'class' => 'app\modules\account\Account',
@@ -19,6 +23,42 @@ $config = [
         ],
     ],
     'components' => [
+        'i18n' => [
+            'translations' => [
+                '*' => [
+                    'class' => 'yii\i18n\PhpMessageSource',
+                    'basePath' => '@app/messages', // if advanced application, set @frontend/messages
+                    'sourceLanguage' => 'en',
+                    'fileMap' => [
+                        //'main' => 'main.php',
+                    ],
+                ],
+            ],
+        ],
+        'authClientCollection' => [
+            'class' => yii\authclient\Collection::className(),
+            'clients' => [
+                'facebook' => [
+                    'class'        => 'dektrium\user\clients\Facebook',
+                    'clientId'     => '454419871626597',
+                    'clientSecret' => 'fe320aac9907dbb5f58c6b96f66b60e6',
+                ],
+                'twitter' => [
+                    'class'          => 'dektrium\user\clients\Twitter',
+                    'consumerKey'    => 'CONSUMER_KEY',
+                    'consumerSecret' => 'CONSUMER_SECRET',
+                ],
+                'google' => [
+                    'class'        => 'dektrium\user\clients\Google',
+                    'clientId'     => 'CLIENT_ID',
+                    'clientSecret' => 'CLIENT_SECRET',
+                ],
+            ],
+        ],
+        'authManager' => [
+            'class' => 'yii\rbac\DbManager',
+            'defaultRoles' => ['guest', 'user'],
+        ],
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'ghjf@^&piugfd08)HGJ0785D^&$2',

@@ -47,39 +47,35 @@ $counter=1;
     <div class="col-md-12">
         <h3>Total Tax Amount : <?= $total_tax?></h3>
     </div>
-    <div class="box">
-        <div class="box-body">
-            <table id="expenses_table" class="table table-bordered table-striped">
-                <thead>
-                <tr>
-                    <th>S.No.</th>
-                    <th>Date</th>
-                    <th>Total tax</th>
-                    <th>Action</th>
-                </tr>
-                </thead>
-                <tbody>
-                <?php foreach($salary_slips as $salary_slip){?>
-                    <tr>
-                        <td scope="row"><?= $counter++?></td>
-                        <td scope="row"><?= date('Y M', strtotime($salary_slip["date"]))?></td>
-                        <td scope="row"><?= $salary_slip["tax_amount"]?></td>
-                        <td>
-                            <ul class="list-unstyled">
-                                <li style="display:inline-block">
-                                    <a class=" btn btn-success btn-sm field-tip pointer" href="tax-details?d=<?= $salary_slip["date"]?>">
-                                        <span class="fa fa-eye"></span>
-                                    </a>
-                                    <span class="tip-content" style="display: none;">View</span>
-                                </li>
-                            </ul>
-                        </td>
-                    </tr>
-                <?php }?>
-                </tbody>
-            </table>
-        </div>
-    </div>
+    <table id="expenses_table" class="table table-bordered table-striped">
+        <thead>
+        <tr>
+            <th>S.No.</th>
+            <th>Date</th>
+            <th>Total tax</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <?php foreach($salary_slips as $salary_slip){?>
+            <tr>
+                <td scope="row"><?= $counter++?></td>
+                <td scope="row"><?= date('Y M', strtotime($salary_slip["date"]))?></td>
+                <td scope="row"><?= $salary_slip["tax_amount"]?></td>
+                <td>
+                    <ul class="list-unstyled">
+                        <li style="display:inline-block">
+                            <a class=" btn btn-success btn-sm field-tip pointer" href="tax-details?d=<?= $salary_slip["date"]?>">
+                                <span class="fa fa-eye"></span>
+                            </a>
+                            <span class="tip-content" style="display: none;">View</span>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        <?php }?>
+        </tbody>
+    </table>
 <?php
 $script = <<< JS
 $(document).ready(function(){

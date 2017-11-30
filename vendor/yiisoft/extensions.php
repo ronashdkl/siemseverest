@@ -57,34 +57,6 @@ return array (
       '@yii/debug' => $vendorDir . '/yiisoft/yii2-debug',
     ),
   ),
-  'yiisoft/yii2-httpclient' => 
-  array (
-    'name' => 'yiisoft/yii2-httpclient',
-    'version' => '2.0.5.0',
-    'alias' => 
-    array (
-      '@yii/httpclient' => $vendorDir . '/yiisoft/yii2-httpclient',
-    ),
-  ),
-  'yiisoft/yii2-authclient' => 
-  array (
-    'name' => 'yiisoft/yii2-authclient',
-    'version' => '2.1.4.0',
-    'alias' => 
-    array (
-      '@yii/authclient' => $vendorDir . '/yiisoft/yii2-authclient',
-    ),
-  ),
-  'dektrium/yii2-user' => 
-  array (
-    'name' => 'dektrium/yii2-user',
-    'version' => '0.9.12.0',
-    'alias' => 
-    array (
-      '@dektrium/user' => $vendorDir . '/dektrium/yii2-user',
-    ),
-    'bootstrap' => 'dektrium\\user\\Bootstrap',
-  ),
   'dektrium/yii2-rbac' => 
   array (
     'name' => 'dektrium/yii2-rbac',
@@ -120,6 +92,61 @@ return array (
     'alias' => 
     array (
       '@kartik/select2' => $vendorDir . '/kartik-v/yii2-widget-select2',
+    ),
+  ),
+  'yiisoft/yii2-httpclient' => 
+  array (
+    'name' => 'yiisoft/yii2-httpclient',
+    'version' => '2.0.5.0',
+    'alias' => 
+    array (
+      '@yii/httpclient' => $vendorDir . '/yiisoft/yii2-httpclient',
+    ),
+  ),
+  'yiisoft/yii2-authclient' => 
+  array (
+    'name' => 'yiisoft/yii2-authclient',
+    'version' => '2.1.4.0',
+    'alias' => 
+    array (
+      '@yii/authclient' => $vendorDir . '/yiisoft/yii2-authclient',
+    ),
+  ),
+  'dektrium/yii2-user' => 
+  array (
+    'name' => 'dektrium/yii2-user',
+    'version' => '0.9.12.0',
+    'alias' => 
+    array (
+      '@dektrium/user' => $vendorDir . '/dektrium/yii2-user',
+    ),
+    'bootstrap' => 'dektrium\\user\\Bootstrap',
+  ),
+  'yiisoft/yii2-jui' => 
+  array (
+    'name' => 'yiisoft/yii2-jui',
+    'version' => '2.0.7.0',
+    'alias' => 
+    array (
+      '@yii/jui' => $vendorDir . '/yiisoft/yii2-jui',
+    ),
+  ),
+  '2amigos/yii2-arrayquery-component' => 
+  array (
+    'name' => '2amigos/yii2-arrayquery-component',
+    'version' => '1.0.3.0',
+    'alias' => 
+    array (
+      '@dosamigos/arrayquery' => $vendorDir . '/2amigos/yii2-arrayquery-component/src',
+    ),
+  ),
+  'yii2mod/yii2-rbac' => 
+  array (
+    'name' => 'yii2mod/yii2-rbac',
+    'version' => '2.2.1.0',
+    'alias' => 
+    array (
+      '@yii2mod/rbac' => $vendorDir . '/yii2mod/yii2-rbac',
     ),
   ),
 );
