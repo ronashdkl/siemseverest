@@ -35,13 +35,8 @@ class Expenses extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-<<<<<<< HEAD
-            [['title','amount','date','expense_method','paid_to'],'required'],
-            [['amount', 'status'], 'integer'],
-=======
             [['title','amount','date','method','paid_to'],'required'],
             [['amount', 'status','voucher_id'], 'integer'],
->>>>>>> 1897afed6b3387e42646c58acb1c5bf9564d1e93
             // validates if age is greater than or equal to 30
             ['amount', 'validateAmount', 'when' => function($model){
             if($model->method !=""){

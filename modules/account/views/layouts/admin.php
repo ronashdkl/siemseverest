@@ -332,25 +332,25 @@ AdminAsset::register($this);
                     </a>
                     <ul class="treeview-menu">
                         <li class="treeview">
-                            <a href="<?= Url::toRoute('income/index')?>"><i class="fa fa-circle-o"></i>Income</a>
+                            <a href="<?= Url::toRoute('/account/income/index')?>"><i class="fa fa-circle-o"></i>Income</a>
                         </li>
                         <li class="treeview">
-                            <a href="<?= Url::toRoute('expenses/index')?>"><i class="fa fa-circle-o"></i>Expenses</a>
+                            <a href="<?= Url::toRoute('/account/expenses/index')?>"><i class="fa fa-circle-o"></i>Expenses</a>
                         </li>
                         <li class="treeview">
-                            <a href="<?= Url::toRoute('salary-slip/tax')?>"><i class="fa fa-circle-o"></i>Tax</a>
+                            <a href="<?= Url::toRoute('/account/salary-slip/tax')?>"><i class="fa fa-circle-o"></i>Tax</a>
                         </li>
                         <li class="treeview">
-                            <a href="<?= Url::toRoute('withdraw/index')?>"><i class="fa fa-circle-o"></i>Withdraw</a>
+                            <a href="<?= Url::toRoute('/account/withdraw/index')?>"><i class="fa fa-circle-o"></i>Withdraw</a>
                         </li>
                         <li class="treeview">
-                            <a href="<?= Url::toRoute('salary-slip/index')?>"><i class="fa fa-circle-o"></i>Salary</a>
+                            <a href="<?= Url::toRoute('/account/salary-slip/index')?>"><i class="fa fa-circle-o"></i>Salary</a>
                         </li>
                     </ul>
                 </li>
                 <li class="treeview">
                     <a href="#">
-                        <i class="fa fa-share"></i> <span>XYZ Management</span>
+                        <i class="fa fa-share"></i> <span>Employee Management</span>
                         <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
                     </a>
                     <ul class="treeview-menu">

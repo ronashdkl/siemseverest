@@ -14,7 +14,7 @@ use yii\filters\VerbFilter;
  */
 class EmployeemanageController extends Controller
 {
-    public $layout = "admin";
+    public $layout = "@app/modules/account/views/layouts/admin";
     /**
      * @inheritdoc
      */
