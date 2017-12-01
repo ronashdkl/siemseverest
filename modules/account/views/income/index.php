@@ -126,8 +126,8 @@ Modal::end();
 $script = <<< JS
 $(document).ready(function(){
     $('#income_table').DataTable({"aoColumnDefs": [{ 'bSortable': false, 'aTargets': [-1] }]});
-    
-    $('.delete_btn').on('click',function(event){
+});
+$('.delete_btn').on('click',function(event){
         var id = $(this).attr("data-content");
         $('#delete_Modal'+id).modal('show');
         event.stopPropagation();
@@ -137,6 +137,5 @@ $(document).ready(function(){
         $('#createModal').modal('show');
         event.stopPropagation();
     });
-});
 JS;
 $this->registerJs($script, View::POS_END); ?>
