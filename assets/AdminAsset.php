@@ -20,6 +20,7 @@ class AdminAsset extends AssetBundle
         'dist/css/AdminLTE.min.css',
         'dist/css/skins/_all-skins.min.css',
         'bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css',
+        'https://fonts.googleapis.com/css?family=Roboto',
         ];
     public $js = [
         'bootstrap/js/bootstrap.min.js',
