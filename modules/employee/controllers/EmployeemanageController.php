@@ -41,12 +41,13 @@ class EmployeemanageController extends Controller
      */
     public function actionIndex()
     {
-        $dataProvider = new ActiveDataProvider([
-            'query' => Employee::find(),
-        ]);
+//        $dataProvider = new ActiveDataProvider([
+//            'query' => Employee::find(),
+//        ]);
 
+        $data = Employee::find()->where(['status'=>1])->all();
         return $this->render('index', [
-            'dataProvider' => $dataProvider,
+            'data' => $data,
         ]);
     }
 
