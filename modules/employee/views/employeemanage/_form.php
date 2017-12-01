@@ -5,6 +5,7 @@ use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
 use app\modules\employee\models\Jobpost;
 use kartik\file\FileInput;
+use kartik\date\DatePicker;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Employee */
@@ -25,7 +26,7 @@ use kartik\file\FileInput;
     <div class="no-padding no-margin box box-primary">
         <div class="box-body">
 
-            <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
+            <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data'],'enableAjaxValidation' => true]); ?>
 
             <?= $form->field($model, 'first_name')->textInput(['maxlength' => true]) ?>
 
@@ -35,6 +36,16 @@ use kartik\file\FileInput;
 
             <?= $form->field($model, 'contact')->textInput(['maxlength' => true]) ?>
 
+            <?= $form->field($model, 'email')->textInput() ?>
+
+            <?= $form->field($model, 'joined_date')->widget(DatePicker::classname(), [
+                'options' => ['placeholder' => 'Enter joined date ...'],
+                'pluginOptions' => [
+                    'autoclose'=>true,
+                    'format' => 'yyyy-m-dd'
+                ]
+            ]);?>
+
             <?= $form->field($model, 'job_type')->dropDownList(['permanent' => 'permanent', 'provision' => 'provision', 'contract' => 'contract']); ?>
 
             <?= $form->field($model, 'job_post')->dropDownList(ArrayHelper::map(Jobpost::find()->all(),'id','job_post')); ?>
@@ -43,7 +54,7 @@ use kartik\file\FileInput;
 
             <?= $form->field($model, 'citizenship_number')->textInput(['maxlength' => true]) ?>
 
-            <?= $form->field($model, 'image')->widget(FileInput::classname(), [
+            <?= $form->field($model, 'image',['enableAjaxValidation' => false])->widget(FileInput::classname(), [
                 'options' => ['accept' => 'image/*'],
                 'pluginOptions'=>['allowedFileExtensions'=>['jpg','gif','png'],'showUpload' => false,],
             ]);   ?>

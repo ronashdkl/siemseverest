@@ -19,6 +19,8 @@ use Yii;
  * @property string $citizenship_number
  * @property string $image
  * @property integer $status
+ * @property integer $email
+ * @property integer $joined_date
  *
  * @property Withdraw[] $withdraws
  */
@@ -38,11 +40,14 @@ class Employee extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['first_name', 'last_name', 'address', 'contact', 'job_type', 'job_post', 'sallery', 'citizenship_number', 'image', 'status'], 'required'],
+            [['first_name', 'last_name', 'address', 'contact','email','joined_date', 'job_type', 'job_post', 'sallery', 'citizenship_number', 'image', 'status'], 'required'],
             [['user_id', 'status'], 'integer'],
             [['sallery'], 'number'],
+            [['joined_date'], 'date','format'=>'php:Y-m-d'],
             [['image'], 'string'],
-            [['image'], 'safe'],
+            [['email'], 'email'],
+            [['email'], 'unique'],
+            //[['image'], 'safe'],
             [['first_name', 'last_name'], 'string', 'max' => 100],
             [['address', 'job_type', 'job_post', 'citizenship_number'], 'string', 'max' => 200],
             [['contact'], 'string', 'max' => 20],
@@ -67,6 +72,8 @@ class Employee extends \yii\db\ActiveRecord
             'citizenship_number' => 'Citizenship Number',
             'image' => 'Image',
             'status' => 'Status',
+            'joined_date' => 'Joined Date',
+            'email' => 'Email',
         ];
     }
 
