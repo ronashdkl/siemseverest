@@ -48,7 +48,7 @@ use kartik\date\DatePicker;
 
             <?= $form->field($model, 'job_type')->dropDownList(['permanent' => 'permanent', 'provision' => 'provision', 'contract' => 'contract']); ?>
 
-            <?= $form->field($model, 'job_post')->dropDownList(ArrayHelper::map(Jobpost::find()->all(),'id','job_post')); ?>
+            <?= $form->field($model, 'job_post')->dropDownList(ArrayHelper::map(Jobpost::find()->all(),'job_post','job_post')); ?>
 
             <?= $form->field($model, 'sallery')->textInput() ?>
 
