@@ -2,6 +2,7 @@
 
 namespace app\modules\employee\controllers;
 
+use dektrium\user\models\Profile;
 use dektrium\user\models\User;
 use Yii;
 use app\modules\account\models\Employee;
@@ -79,30 +80,39 @@ class EmployeemanageController extends Controller
         if ($model->load(Yii::$app->request->post())) {
             $file = UploadedFile::getInstance($model, 'image');
             $model->image = '../../uploads/' . $file->baseName . '.' . $file->extension;
-            if( $model->save()){
+            if ($model->save()) {
                 $file->saveAs('uploads/' . $file->baseName . '.' . $file->extension);
-                $user = new User();
 
+                //generating random password
+                $randomString = Yii::$app->getSecurity()->generateRandomString(6);
+                $user = new User();
                 $user->setAttributes([
-                    "username"=>$model->first_name,
-                    "email"=>$model->email,
+                    "username" => $model->first_name,
+                    "email" => $model->email,
+                    "password"=>$randomString
                 ]);
-                $randomString = Yii::$app->getSecurity()->generateRandomString(32);
-                $user->password_hash = Yii::$app->security->generatePasswordHash($randomString);
-                if($user->save(false)){
+
+                $user->password_hash = Yii::$app->security->generatePasswordHash($randomString,Yii::$app->getModule('user')->cost);
+
+                //setting up profile
+                $profile = new Profile();
+                $profile->setAttributes([
+                    'name'=> $model->first_name . ' ' . $model->last_name,
+                    'public_email'=>$model->email,
+                    'gravatar_email'=>$model->email,
+                    'location'=>$model->address
+                ]);
+                $user->setProfile($profile);
+
+                if ($user->register()) {
                     Yii::$app->mailer->compose()
                         ->setFrom('admin@siems.com')
-                        ->setTo('thapa.binay111@gmail.com')
-                        ->setCc('premchhantyal2010@gmail.com')
-                        ->setBcc('pikaju789@gmail.com')
-                        ->setSubject('Hello Binay')
-                        ->setTextBody('')
-                        ->setHtmlBody('This is your password is '.$randomString)
+                        ->setTo($user->email)
+                        ->setSubject('Hello ' . $user->username)->setTextBody('')
+                        ->setHtmlBody('<h2>Your user name is ' . $user->username . '</h2><h2>And password is ' . $randomString . '</h2>')
                         ->send();
                 }
-
             }
-
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
@@ -110,6 +120,7 @@ class EmployeemanageController extends Controller
             ]);
         }
     }
+
 
     /**
      * Updates an existing Employee model.
@@ -160,10 +171,5 @@ class EmployeemanageController extends Controller
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
-    }
-
-    public function actionDetail()
-    {
-        return $this->render('detail');
     }
 }
