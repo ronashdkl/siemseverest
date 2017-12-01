@@ -2,7 +2,7 @@
 
 .w3-content{max-width:980px;margin:auto}.w3-rest{overflow:hidden}
 
-.w3-margin{margin:16px!important}.w3-margin-top{margin-top:16px!important}.w3-margin-bottom{margin-bottom:16px!important}
+.w3-margin{margin:25px!important}.w3-margin-top{margin-top:25px!important}.w3-margin-bottom{margin-bottom:16px!important}
 
 .w3-container:after,.w3-container:before,.w3-panel:after,.w3-panel:before,.w3-row:after,.w3-row:before,.w3-row-padding:after,.w3-row-padding:before,
 .w3-cell-row:before,.w3-cell-row:after,.w3-clear:after,.w3-clear:before,.w3-bar:before,.w3-bar:after{content:"";display:table;clear:both}

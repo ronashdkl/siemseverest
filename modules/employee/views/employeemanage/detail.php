@@ -6,6 +6,15 @@
  * Time: 4:47 PM
  */
 ?>
+<section class="content-header">
+    <h1>
+        <?= $this->title ;?>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active"><?= $this->title;?></li>
+    </ol>
+</section>
 
 <body class="w3-light-grey">
 
@@ -29,7 +38,7 @@
                 <div class="w3-container">
                     <p><i class="fa fa-briefcase fa-fw w3-margin-right w3-large w3-text-teal"></i><?= $model->job_post?></p>
                     <p><i class="fa fa-home fa-fw w3-margin-right w3-large w3-text-teal"></i><?= $model->address?></p>
-                    <p><i class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text-teal"></i>ex@mail.com</p>
+                    <p><i class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text-teal"></i><?= $model->email?></p>
                     <p><i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text-teal"></i><?= $model->contact?></p>
                     <hr>
 
@@ -65,8 +74,8 @@
             <div class="w3-container w3-card w3-white w3-margin-bottom">
                 <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-user fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i><?= $model->fullName?></h2>
                 <div class="w3-container">
-                    <h5 class="w3-opacity"><b><?= $model->job_post?></b></h5>
-                    <p>Lorem ipsum dolor sit amet. Praesentium magnam consectetur vel in deserunt aspernatur est reprehenderit sunt hic. Nulla tempora soluta ea et odio, unde doloremque repellendus iure, iste.</p>
+                    <h5 class="w3-opacity"><b>Joined At</b></h5>
+                    <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>Jun 2010 - Mar 2012</h6>
                     <hr>
                 </div>
             </div>
@@ -86,6 +95,7 @@
                 <div class="w3-container">
                     <h5 class="w3-opacity"><b>Citizenship Number</b></h5>
                     <p><?= $model->citizenship_number?></p><br>
+                    <hr>
                 </div>
             </div>
 
@@ -97,5 +107,3 @@
 
     <!-- End Page Container -->
 </div>
-
-</body>

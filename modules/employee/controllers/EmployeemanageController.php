@@ -56,7 +56,10 @@ class EmployeemanageController extends Controller
      */
     public function actionView($id)
     {
-        return $this->render('view', [
+//        return $this->render('view', [
+//            'model' => $this->findModel($id),
+//        ]);
+        return $this->render('detail', [
             'model' => $this->findModel($id),
         ]);
     }
@@ -75,7 +78,7 @@ class EmployeemanageController extends Controller
         }
         if ($model->load(Yii::$app->request->post())) {
             $file = UploadedFile::getInstance($model, 'image');
-            $model->image = 'web/uploads/' . $file->baseName . '.' . $file->extension;
+            $model->image = '../../uploads/' . $file->baseName . '.' . $file->extension;
             if( $model->save()){
                 $file->saveAs('uploads/' . $file->baseName . '.' . $file->extension);
                 $user = new User();
