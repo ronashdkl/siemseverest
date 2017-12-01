@@ -9,7 +9,9 @@ use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\Response;
 use yii\web\UploadedFile;
+use yii\widgets\ActiveForm;
 
 /**
  * EmployeeManagementController implements the CRUD actions for Employee model.
@@ -67,19 +69,35 @@ class EmployeemanageController extends Controller
     public function actionCreate()
     {
         $model = new Employee();
-
+        if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {
+            Yii::$app->response->format = Response::FORMAT_JSON;
+            return ActiveForm::validate($model);
+        }
         if ($model->load(Yii::$app->request->post())) {
             $file = UploadedFile::getInstance($model, 'image');
             $model->image = 'web/uploads/' . $file->baseName . '.' . $file->extension;
             if( $model->save()){
                 $file->saveAs('uploads/' . $file->baseName . '.' . $file->extension);
                 $user = new User();
-                $user->setAttribute([
-                    'username'=>"binay",
-                    'email'=>"thapa.binay123@gmial.com",
-                    'password'=>"123"
+
+                $user->setAttributes([
+                    "username"=>$model->first_name,
+                    "email"=>$model->email,
                 ]);
-                $user->save();
+                $randomString = Yii::$app->getSecurity()->generateRandomString(32);
+                $user->password_hash = Yii::$app->security->generatePasswordHash($randomString);
+                if($user->save(false)){
+                    Yii::$app->mailer->compose()
+                        ->setFrom('admin@siems.com')
+                        ->setTo('thapa.binay111@gmail.com')
+                        ->setCc('premchhantyal2010@gmail.com')
+                        ->setBcc('pikaju789@gmail.com')
+                        ->setSubject('Hello Binay')
+                        ->setTextBody('')
+                        ->setHtmlBody('This is your password is '.$randomString)
+                        ->send();
+                }
+
             }
 
             return $this->redirect(['view', 'id' => $model->id]);
@@ -99,7 +117,10 @@ class EmployeemanageController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-
+        if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {
+            Yii::$app->response->format = Response::FORMAT_JSON;
+            return ActiveForm::validate($model);
+        }
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
