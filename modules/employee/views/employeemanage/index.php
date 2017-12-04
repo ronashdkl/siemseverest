@@ -59,7 +59,7 @@ $counter=1;
                                     <span class="tip-content" style="display: none;">View</span>
                                 </li>
                                 <li style="display:inline-block"  >
-                                    <button class="btn btn-danger btn-sm field-tip pointer delete_btn" data-content="<?= $each_data->id?>">
+                                    <button class="btn btn-danger btn-sm field-tip pointer" data-toggle="modal" data-target="#delete_Modal<?=$each_data->id?>">
                                         <span class="fa fa-trash-o"></span>
                                     </button>
                                     <span class="tip-content" style="display: none;">Delete</span>
@@ -107,12 +107,6 @@ $counter=1;
 $script = <<< JS
 $(document).ready(function(){
     $('#employee_table').DataTable({"aoColumnDefs": [{ 'bSortable': false, 'aTargets': [-1] }]});
-    
-$('.delete_btn').on('click',function(event){
-        var id = $(this).attr("data-content");
-        $('#delete_Modal'+id).modal('show');
-        event.stopPropagation();
-    });
 });
 JS;
 $this->registerJs($script, View::POS_END); ?>

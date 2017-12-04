@@ -136,7 +136,12 @@ class EmployeemanageController extends Controller
             Yii::$app->response->format = Response::FORMAT_JSON;
             return ActiveForm::validate($model);
         }
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post())) {
+            $file = UploadedFile::getInstance($model, 'image');
+            $model->image = '../../uploads/' . $file->baseName . '.' . $file->extension;
+            if ($model->save()) {
+                $file->saveAs('uploads/' . $file->baseName . '.' . $file->extension);
+            }
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
@@ -155,6 +160,15 @@ class EmployeemanageController extends Controller
     {
         $this->findModel($id)->delete();
 
+        return $this->redirect(['index']);
+    }
+
+    public function actionDeleteEmployee()
+    {
+        $id=$_POST['id'];
+        $model = Employee::findOne($id);
+        $model->status = 0;
+        $model->save(false);
         return $this->redirect(['index']);
     }
 

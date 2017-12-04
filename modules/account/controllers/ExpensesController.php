@@ -83,7 +83,6 @@ class ExpensesController extends Controller
      */
     public function actionCreate()
     {
-        var_dump(1);exit;
         $model = new Expenses();
         $ref_id = new RefId();
         $bal_model = new Balance();

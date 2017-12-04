@@ -140,18 +140,17 @@ Modal::end();
 $script = <<< JS
 $(document).ready(function(){
     $('#expenses_table').DataTable({"aoColumnDefs": [{ 'bSortable': false, 'aTargets': [-1] }]});
-    
+
+});
+$('#createbtn').on('click',function(event){
+    $('#createModal').modal('show');
+    event.stopPropagation();
+});
 $('.delete_btn').on('click',function(event){
         var id = $(this).attr("data-content");
         $('#delete_Modal'+id).modal('show');
         event.stopPropagation();
     });
-
-$('#createbtn').on('click',function(event){
-    $('#createModal').modal('show');
-    event.stopPropagation();
-});
-});
 JS;
 $this->registerJs($script, View::POS_END); ?>
 
