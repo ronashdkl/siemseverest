@@ -80,9 +80,9 @@ class EmployeemanageController extends Controller
         }
         if ($model->load(Yii::$app->request->post())) {
             $file = UploadedFile::getInstance($model, 'image');
-            $model->image = '../../uploads/' . $file->baseName . '.' . $file->extension;
+            $model->image = 'uploads/' . $file->baseName . '.' . $file->extension;
             if ($model->save()) {
-                $file->saveAs('uploads/' . $file->baseName . '.' . $file->extension);
+                $file->saveAs('../uploads/' . $file->baseName . '.' . $file->extension);
 
                 //generating random password
                 $randomString = Yii::$app->getSecurity()->generateRandomString(6);
@@ -138,9 +138,9 @@ class EmployeemanageController extends Controller
         }
         if ($model->load(Yii::$app->request->post())) {
             $file = UploadedFile::getInstance($model, 'image');
-            $model->image = '../../uploads/' . $file->baseName . '.' . $file->extension;
+            $model->image = 'uploads/' . $file->baseName . '.' . $file->extension;
             if ($model->save()) {
-                $file->saveAs('uploads/' . $file->baseName . '.' . $file->extension);
+                $file->saveAs('../uploads/' . $file->baseName . '.' . $file->extension);
             }
             return $this->redirect(['view', 'id' => $model->id]);
         } else {

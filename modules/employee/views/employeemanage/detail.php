@@ -29,7 +29,7 @@
 
             <div class="w3-white w3-text-grey w3-card-4">
                 <div class="w3-display-container">
-                    <img src="<?= $model->image?>" style="width:100%" alt="Avatar">
+                    <img src="../../../<?= $model->image?>" style="width:100%" alt="Avatar">
                     <div class="w3-display-bottomleft w3-container w3-text-white">
                         <h2><?= $model->fullName?></h2>
                     </div>
