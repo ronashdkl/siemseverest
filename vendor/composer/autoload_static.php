@@ -34,6 +34,7 @@ class ComposerStaticInitc22a6a76a7e576c519fe0104bbd8dbd7
         ),
         'k' => 
         array (
+            'kartik\\switchinput\\' => 19,
             'kartik\\select2\\' => 15,
             'kartik\\plugins\\fileinput\\' => 25,
             'kartik\\mpdf\\' => 12,
@@ -134,6 +135,10 @@ class ComposerStaticInitc22a6a76a7e576c519fe0104bbd8dbd7
             0 => __DIR__ . '/..' . '/phpdocumentor/reflection-common/src',
             1 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
             2 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
+        ),
+        'kartik\\switchinput\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/kartik-v/yii2-widget-switchinput',
         ),
         'kartik\\select2\\' => 
         array (
