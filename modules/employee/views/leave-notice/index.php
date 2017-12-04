@@ -26,7 +26,7 @@ $counter = 1;
     <div class="no-padding no-margin box box-primary">
         <div class="box-header">
             <p class="col-3">
-                <?= Html::a('Create Employee', ['create'], ['class' => 'btn btn-success']) ?>
+                <?= Html::a('Create', ['create'], ['class' => 'btn btn-success']) ?>
             </p>
         </div>
         <div class="box-body">
