@@ -357,6 +357,9 @@ AdminAsset::register($this);
                         <li class="treeview">
                             <a href="<?= Url::toRoute('/employee/employeemanage/index')?>"><i class="fa fa-circle-o"></i>Employee Records</a>
                         </li>
+                        <li class="treeview">
+                            <a href="<?= Url::toRoute('/employee/leave-notice/index')?>"><i class="fa fa-circle-o"></i>Leave Notice</a>
+                        </li>
                     </ul>
                 </li>
                 <li class="treeview">
