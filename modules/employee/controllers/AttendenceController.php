@@ -39,11 +39,11 @@ class AttendenceController extends Controller
     public function actionIndex()
     {
         $searchModel = new AttendenceSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $data =  Attendence::find()->all();
 
         return $this->render('index', [
             'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
+            'dataProvider' => $data,
         ]);
     }
 
