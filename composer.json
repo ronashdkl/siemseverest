@@ -23,7 +23,8 @@
         "dektrium/yii2-rbac": "1.0.0-alpha@dev",
         "kartik-v/yii2-widget-datepicker": "@dev",
         "kartik-v/yii2-mpdf": "*",
-        "kartik-v/yii2-widget-fileinput": "*"
+        "kartik-v/yii2-widget-fileinput": "*",
+        "kartik-v/yii2-widget-switchinput": "*"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",
