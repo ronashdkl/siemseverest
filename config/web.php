@@ -21,6 +21,20 @@ $config = [
         'employee' => [
             'class' => 'app\modules\employee\Employee',
         ],
+        'notifications' => [
+            'class' => 'webzop\notifications\Module',
+            'channels' => [
+                'screen' => [
+                    'class' => 'webzop\notifications\channels\ScreenChannel',
+                ],
+                'email' => [
+                    'class' => 'webzop\notifications\channels\EmailChannel',
+                    'message' => [
+                        'from' => 'bma@siemseverest.com'
+                    ],
+                ],
+            ],
+        ],
     ],
     'components' => [
         'i18n' => [

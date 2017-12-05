@@ -28,6 +28,10 @@ class ComposerStaticInitc22a6a76a7e576c519fe0104bbd8dbd7
             'yii\\authclient\\' => 15,
             'yii\\' => 4,
         ),
+        'w' => 
+        array (
+            'webzop\\notifications\\' => 21,
+        ),
         'p' => 
         array (
             'phpDocumentor\\Reflection\\' => 25,
@@ -129,6 +133,10 @@ class ComposerStaticInitc22a6a76a7e576c519fe0104bbd8dbd7
         'yii\\' => 
         array (
             0 => __DIR__ . '/..' . '/yiisoft/yii2',
+        ),
+        'webzop\\notifications\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/webzop/yii2-notifications',
         ),
         'phpDocumentor\\Reflection\\' => 
         array (

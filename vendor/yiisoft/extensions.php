@@ -167,4 +167,14 @@ return array (
       '@kartik/select2' => $vendorDir . '/kartik-v/yii2-widget-select2',
     ),
   ),
+  'webzop/yii2-notifications' => 
+  array (
+    'name' => 'webzop/yii2-notifications',
+    'version' => '0.1.0.0',
+    'alias' => 
+    array (
+      '@webzop/notifications' => $vendorDir . '/webzop/yii2-notifications',
+    ),
+    'bootstrap' => 'webzop\\notifications\\Bootstrap',
+  ),
 );

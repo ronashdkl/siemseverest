@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "7f7e4a4fa82d1b75829e65c8962a45e2",
+    "content-hash": "ac31f2c48b93c03a49bdb4cbf8f6ed6a",
     "packages": [
         {
             "name": "bower-asset/bootstrap",
@@ -636,7 +636,7 @@
                 "widget",
                 "yii2"
             ],
-            "time": "2017-09-06 06:18:08"
+            "time": "2017-09-06T06:18:08+00:00"
         },
         {
             "name": "kartik-v/yii2-widget-fileinput",
@@ -744,7 +744,7 @@
                 "widget",
                 "yii2"
             ],
-            "time": "2017-12-03 08:02:21"
+            "time": "2017-12-03T08:02:21+00:00"
         },
         {
             "name": "kartik-v/yii2-widget-switchinput",
@@ -949,6 +949,51 @@
                 "mailer"
             ],
             "time": "2017-05-01T15:54:03+00:00"
+        },
+        {
+            "name": "webzop/yii2-notifications",
+            "version": "0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/webzop/yii2-notifications.git",
+                "reference": "bfa81f165fa47d8bf02c143ec7926f608dd1dbcb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/webzop/yii2-notifications/zipball/bfa81f165fa47d8bf02c143ec7926f608dd1dbcb",
+                "reference": "bfa81f165fa47d8bf02c143ec7926f608dd1dbcb",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.6",
+                "yiisoft/yii2": "*"
+            },
+            "type": "yii2-extension",
+            "extra": {
+                "bootstrap": "webzop\\notifications\\Bootstrap"
+            },
+            "autoload": {
+                "psr-4": {
+                    "webzop\\notifications\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "Gonçalo Esteves",
+                    "email": "goncalo.p.esteves@gmail.com",
+                    "homepage": "https://webzop.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Notifications module for Yii2",
+            "keywords": [
+                "yii2",
+                "yii2-manage-notifications",
+                "yii2-notifications",
+                "yii2-notifications-module"
+            ],
+            "time": "2017-10-11T11:45:10+00:00"
         },
         {
             "name": "yiisoft/yii2",
