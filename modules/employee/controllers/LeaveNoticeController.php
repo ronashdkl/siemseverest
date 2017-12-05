@@ -125,6 +125,14 @@ class LeaveNoticeController extends Controller
         return $this->redirect(['index']);
     }
 
+    public function actionApprove($id)
+    {
+        $model = LeaveNotice::findOne($id);
+        $model->status = 2;
+        $model->save(false);
+        return $this->redirect(['view','id' => $model->id]);
+    }
+
     /**
      * Finds the LeaveNotice model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.

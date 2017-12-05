@@ -30,7 +30,11 @@ $this->title = $model->id;
                         'method' => 'post',
                     ],
                 ]) ?>
-
+                <?php if($model->status!=2){?>
+                <?= Html::a('Approve', ['approve', 'id' => $model->id], ['class' => 'btn btn-success pull-right']) ?>
+                <?php }else{?>
+                <i class="fa fa-check fa-lg pull-right">Approved</i>
+            <?php }?>
             </p>
         </div>
     <div>
