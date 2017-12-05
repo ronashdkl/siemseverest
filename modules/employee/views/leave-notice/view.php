@@ -30,6 +30,7 @@ $this->title = $model->id;
                         'method' => 'post',
                     ],
                 ]) ?>
+
             </p>
         </div>
     <div>
@@ -48,6 +49,14 @@ $this->title = $model->id;
             <br>
             <br>
             <?= $model->description?>
+            <br>
+            <br>
+            <b>Attachment:&nbsp</b>
+            <?php if(!empty($model->file)){?>
+                <?= Html::a($model->file,'../../'.$model->file, [
+                    'target'=>'_blank'
+                ]) ?>
+            <?php } ?>
         </p>
     </div>
 
