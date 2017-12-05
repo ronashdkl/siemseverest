@@ -29,7 +29,7 @@ class Attendence extends \yii\db\ActiveRecord
     {
         return [
             ['date','required'],
-            [['date'], 'safe'],
+            [['date'], 'safe','unique'],
             [['status'], 'integer'],
             [['attendence'], 'string', 'max' => 255],
         ];

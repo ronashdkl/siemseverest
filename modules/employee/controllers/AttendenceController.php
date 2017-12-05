@@ -43,7 +43,7 @@ class AttendenceController extends Controller
 
         return $this->render('index', [
             'searchModel' => $searchModel,
-            'dataProvider' => $data,
+            'data' => $data,
         ]);
     }
 
@@ -74,22 +74,28 @@ class AttendenceController extends Controller
 
         if ($post = Yii::$app->request->post()) {
             $date = @$post['date'];
-            foreach ($employees  as $employee) {
-                $id = @$post[$employee->id];
-                if ($id == NULL)
-                    $id = "0";
-                $attendence_value = new AttendenceValue();
-                $attendence_value->employee_id = $employee->id;
-                $attendence_value->setValue($id);
-                array_push($payload,$attendence_value);
-            }
-            $model->attendence = json_encode($payload);
-            $model->date = ($date == NULL) ? date('Y-m-d') : $date;
-            if($model->save(false))
-            return $this->redirect(['view', 'id' => $model->id]);
-            else
-                var_dump("vaenaw");exit;
+            $bool_exist = Attendence::find()
+                ->where( [ 'date' => $date ] )
+                ->exists();
+            if($date == date("Y-m-d") &&  !$bool_exist ){
+                foreach ($employees  as $employee) {
+                    $id = @$post[$employee->id];
+                    if ($id == NULL)
+                        $id = "0";
+                    $attendence_value = new AttendenceValue();
+                    $attendence_value->employee_id = $employee->id;
+                    $attendence_value->setValue($id);
+                    array_push($payload,$attendence_value);
+                }
+                $model->attendence = json_encode($payload);
+                $model->date = ($date == NULL) ? date('Y-m-d') : $date;
+                if($model->save(false))
+                    return $this->redirect(['view', 'id' => $model->id]);
+                else
+                    return $this->goBack();
+            }else{
                 return $this->goBack();
+            }
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -122,11 +128,11 @@ class AttendenceController extends Controller
             }
             $model->attendence = json_encode($payload);
             $model->date = ($date == NULL) ? date('Y-m-d') : $date;
-            if($model->save(false))
+            if($model->save(false)) {
                 return $this->redirect(['view', 'id' => $model->id]);
-            else
+            }else{
                 return $this->goBack();
-            return $this->redirect(['view', 'id' => $model->id]);
+            }
         } else {
             return $this->render('update', [
                 'model' => $model,
