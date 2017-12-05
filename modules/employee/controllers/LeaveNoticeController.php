@@ -72,10 +72,10 @@ class LeaveNoticeController extends Controller
         $model = new LeaveNotice();
         if ($model->load(Yii::$app->request->post())) {
             $file = UploadedFile::getInstance($model, 'file');
-            $model->file = '../../uploads/' . $file->baseName . '.' . $file->extension;
+            $model->file = 'uploads/' . $file->baseName . '.' . $file->extension;
             $model->apply_date=date('Y-m-d');
             if ($model->save()) {
-                $file->saveAs('uploads/' . $file->baseName . '.' . $file->extension);
+                $file->saveAs('../uploads/' . $file->baseName . '.' . $file->extension);
             }
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
@@ -97,9 +97,9 @@ class LeaveNoticeController extends Controller
 
         if ($model->load(Yii::$app->request->post())) {
             $file = UploadedFile::getInstance($model, 'file');
-            $model->file = '../../uploads/' . $file->baseName . '.' . $file->extension;
+            $model->file = 'uploads/' . $file->baseName . '.' . $file->extension;
             if ($model->save()) {
-                $file->saveAs('uploads/' . $file->baseName . '.' . $file->extension);
+                $file->saveAs('../uploads/' . $file->baseName . '.' . $file->extension);
             }
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
