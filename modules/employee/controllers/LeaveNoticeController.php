@@ -55,7 +55,8 @@ class LeaveNoticeController extends Controller
     public function actionView($id)
     {
         $model=$this->findModel($id);
-        $end_date = date("Y-m-d", strtotime( $model->leave_days."day", strtotime($model->start_date)));
+        $days = $model->leave_days-1;
+        $end_date = date("Y-m-d", strtotime( $days."day", strtotime($model->start_date)));
         return $this->render('view', [
             'model' => $model,
             'end_date' => $end_date
