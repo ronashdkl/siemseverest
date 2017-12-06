@@ -51,7 +51,7 @@ AppAsset::register($this);
                 ['label' => 'Home', 'url' => ['/site/index']],
 
                 (Yii::$app->user->isGuest) ?
-                ['label' => 'Login', 'url' => ['/user-management/auth/login']]
+                ['label' => 'Login', 'url' => ['/dektrium-login/login']]
 
 
 

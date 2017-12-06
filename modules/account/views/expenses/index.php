@@ -7,12 +7,14 @@ use yii\widgets\ActiveForm;
 use yii\bootstrap\Modal;
 use yii\helpers\Url;
 
+
 /* @var $this yii\web\View */
 /* @var $searchModel app\modules\account\models\ExpensesSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = 'Expenses';
 $counter=1;
+//var_dump(Yii::$app->authManager->getRolesByUser(Yii::$app->user->getId()));exit;
 ?>
 
 <?php

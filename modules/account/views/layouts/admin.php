@@ -286,29 +286,31 @@ AdminAsset::register($this);
             <!-- /.search form -->
             <!-- sidebar menu: : style can be found in sidebar.less -->
             <ul class="sidebar-menu" data-widget="tree">
-                <li class="treeview">
-                    <a href="#">
-                        <i class="fa fa-share"></i> <span>Account Management</span>
-                        <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
-                    </a>
-                    <ul class="treeview-menu">
-                        <li class="treeview">
-                            <a href="<?= Url::toRoute('/account/income/index')?>"><i class="fa fa-circle-o"></i>Income</a>
-                        </li>
-                        <li class="treeview">
-                            <a href="<?= Url::toRoute('/account/expenses/index')?>"><i class="fa fa-circle-o"></i>Expenses</a>
-                        </li>
-                        <li class="treeview">
-                            <a href="<?= Url::toRoute('/account/salary-slip/tax')?>"><i class="fa fa-circle-o"></i>Tax</a>
-                        </li>
-                        <li class="treeview">
-                            <a href="<?= Url::toRoute('/account/withdraw/index')?>"><i class="fa fa-circle-o"></i>Withdraw</a>
-                        </li>
-                        <li class="treeview">
-                            <a href="<?= Url::toRoute('/account/salary-slip/index')?>"><i class="fa fa-circle-o"></i>Salary</a>
-                        </li>
-                    </ul>
-                </li>
+                <?php if(Yii::$app->user->identity->isAdmin){?>
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="fa fa-share"></i> <span>Account Management</span>
+                            <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li class="treeview">
+                                <a href="<?= Url::toRoute('/account/income/index')?>"><i class="fa fa-circle-o"></i>Income</a>
+                            </li>
+                            <li class="treeview">
+                                <a href="<?= Url::toRoute('/account/expenses/index')?>"><i class="fa fa-circle-o"></i>Expenses</a>
+                            </li>
+                            <li class="treeview">
+                                <a href="<?= Url::toRoute('/account/salary-slip/tax')?>"><i class="fa fa-circle-o"></i>Tax</a>
+                            </li>
+                            <li class="treeview">
+                                <a href="<?= Url::toRoute('/account/withdraw/index')?>"><i class="fa fa-circle-o"></i>Withdraw</a>
+                            </li>
+                            <li class="treeview">
+                                <a href="<?= Url::toRoute('/account/salary-slip/index')?>"><i class="fa fa-circle-o"></i>Salary</a>
+                            </li>
+                        </ul>
+                    </li>
+                <?php }?>
                 <li class="treeview">
                     <a href="#">
                         <i class="fa fa-share"></i> <span>Employee Management</span>
