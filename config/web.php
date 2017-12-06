@@ -42,7 +42,7 @@ $config = [
             // add wildcard allowed action here!
              'site/*',
             'rbac/*',
-            //  'items/*',
+              'account/*',
             // 'categories/*'
 //            'debug/*'
             'gii/*'
