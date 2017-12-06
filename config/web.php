@@ -8,15 +8,15 @@ $config = [
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'modules'=>[
-        'rbac' => [
-            'class' => 'dektrium\rbac\RbacWebModule',
-        ],
         'user' => [
             'class' => 'dektrium\user\Module',
             'admins' => ['thapa.binay111']
         ],
         'account' => [
             'class' => 'app\modules\account\Account',
+        ],
+        'rbac' => [
+            'class' => 'app\modules\rbac\Rbac',
         ],
         'employee' => [
             'class' => 'app\modules\employee\Employee',
@@ -34,6 +34,18 @@ $config = [
                     ],
                 ],
             ],
+        ],
+    ],
+    'as access' => [
+        'class' => 'app\modules\rbac\components\AccessControl',
+        'allowActions' => [
+            // add wildcard allowed action here!
+             'site/*',
+            'rbac/*',
+            //  'items/*',
+            // 'categories/*'
+//            'debug/*'
+            'gii/*'
         ],
     ],
     'components' => [
@@ -70,8 +82,7 @@ $config = [
             ],
         ],
         'authManager' => [
-            'class' => 'dektrium\rbac\components\DbManager',
-            'defaultRoles' => ['guest', 'user'],
+            'class' => 'yii\rbac\PhpManager', // or use 'yii\rbac\DbManager'
         ],
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation

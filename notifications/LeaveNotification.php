@@ -31,8 +31,9 @@ class LeaveNotification extends Notification
     {
         // TODO: Implement getTitle() method.
         switch($this->key){
+
             case self::LEAVE_NOTIFICATION:
-                return Yii::t('app', 'Leave notice {user} created', ['user' => '#'.$this->user->id]);
+                return Yii::t('app', 'New Leave notice');
         }
     }
 
@@ -43,17 +44,17 @@ class LeaveNotification extends Notification
     public function shouldSend($channel)
     {
         if($channel->id == 'screen'){
-            if(!in_array($this->key, [self::CHECK])){
-                return false;
+            if(in_array($this->key, [self::LEAVE_NOTIFICATION])){
+                return true;
             }
         }
-        return true;
+        return false;
     }
 
     /**
      * @inheritdoc
      */
     public function getRoute(){
-        return ['/modules/employee/leave-notice/index'];
+        return ['/employee/leave-notice/index'];
     }
 }

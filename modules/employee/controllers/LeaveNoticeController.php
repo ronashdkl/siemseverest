@@ -2,6 +2,8 @@
 
 namespace app\modules\employee\controllers;
 
+use app\models\User;
+use app\notifications\LeaveNotification;
 use Yii;
 use app\modules\employee\models\LeaveNotice;
 use app\modules\employee\models\LeaveNoticeSearch;
@@ -9,7 +11,6 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\web\UploadedFile;
-
 /**
  * LeaveNoticeController implements the CRUD actions for LeaveNotice model.
  */
@@ -77,7 +78,9 @@ class LeaveNoticeController extends Controller
             $model->apply_date=date('Y-m-d');
             if ($model->save()) {
                 $file->saveAs('uploads/' . $file->baseName . '.' . $file->extension);
-            }
+                $user = User::findOne(4);
+                    LeaveNotification::create(LeaveNotification::LEAVE_NOTIFICATION)->send();
+               }
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [

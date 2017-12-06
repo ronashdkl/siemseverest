@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use app\modules\rbac\models\AuthAssignment;
 
 /**
  * This is the model class for table "user".
@@ -101,5 +102,14 @@ class User extends \yii\db\ActiveRecord
     public function getTokens()
     {
         return $this->hasMany(Token::className(), ['user_id' => 'id']);
+    }
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getRoles()
+    {
+        return $this->hasMany(AuthAssignment::className(), [
+            'user_id' => 'id',
+        ]);
     }
 }
