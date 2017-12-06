@@ -78,7 +78,11 @@ http://localhost/basic/web/
 CONFIGURATION
 -------------
 ./yii migrate
+
+
 ./yii migrate/up --migrationPath=vendor/webzop/yii2-notifications/migrations/
+
+
 ./yii migrate/up --migrationPath=@yii/rbac/migrations
 
 ### Database
